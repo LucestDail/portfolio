@@ -1,17 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './styles/index.css';
+import './styles/App.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
-
-import './styles/animate.css';
-import './styles/bootstrap.css';
-import './styles/card.css';
-import './styles/flexslider.css';
-// import './styles/mystyle.css';
-// import './styles/port_style.css';
-
-import './util/script.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
