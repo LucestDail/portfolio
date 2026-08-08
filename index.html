@@ -4,132 +4,173 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>오승현 — AI 플랫폼 풀스택 개발자</title>
+<meta property="og:title" content="오승현 — AI 플랫폼 풀스택 개발자">
+<meta property="og:description" content="Java/Spring 기반 AI 웹서비스를 설계·운영하는 풀스택 개발자">
+<meta property="og:image" content="assets/mypicsquare.jpg">
 <style>
-  :root{--bg:#0d1117;--card:#161b22;--fg:#e6edf3;--mut:#8b949e;--acc:#58a6ff;--line:#30363d;--tag:#1f6feb22;}
+  :root{--bg:#0d1117;--card:#161b22;--fg:#e6edf3;--mut:#8b949e;--acc:#58a6ff;--acc2:#7ee787;--line:#30363d;--tag:#1f6feb22;}
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--fg);font-family:-apple-system,'Pretendard','Apple SD Gothic Neo',sans-serif;line-height:1.65;padding:0}
-  .wrap{max-width:860px;margin:0 auto;padding:48px 24px 80px}
-  header{border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:32px}
-  h1{font-size:2.1rem;letter-spacing:-.02em}
-  .role{color:var(--acc);font-weight:600;margin-top:6px}
-  .sum{color:var(--mut);margin-top:14px;font-size:.98rem}
-  .contact{margin-top:16px;font-size:.9rem;color:var(--mut)}
-  .contact a{color:var(--acc);text-decoration:none}
-  h2{font-size:1.15rem;margin:34px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line);letter-spacing:-.01em}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-bottom:14px}
-  .card h3{font-size:1.02rem}
-  .card .meta{color:var(--mut);font-size:.85rem;margin:4px 0 10px}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--fg);font-family:-apple-system,'Pretendard','Apple SD Gothic Neo',sans-serif;line-height:1.65}
+  a{color:var(--acc);text-decoration:none}
+
+  /* Hero */
+  .hero{position:relative;min-height:420px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:60px 24px}
+  .hero::before{content:"";position:absolute;inset:0;background:url('assets/titleimg.jpg') center/cover;filter:brightness(.32) saturate(1.1);z-index:0}
+  .hero-inner{position:relative;z-index:1}
+  .avatar{width:132px;height:132px;border-radius:50%;object-fit:cover;border:3px solid var(--acc);box-shadow:0 8px 30px #0008;margin-bottom:20px}
+  .hero h1{font-size:2.4rem;letter-spacing:-.02em}
+  .hero .role{color:var(--acc2);font-weight:600;margin-top:8px;font-size:1.05rem}
+  .hero .sub{color:#c9d1d9;margin-top:14px;max-width:620px;font-size:.98rem}
+  .hero .contact{margin-top:18px;font-size:.9rem;color:#c9d1d9}
+  .hero .contact a{color:#fff;border-bottom:1px dashed #ffffff66}
+
+  .wrap{max-width:900px;margin:0 auto;padding:8px 24px 80px}
+  section{margin-top:44px}
+  h2{font-size:1.25rem;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--line);letter-spacing:-.01em}
+  h2 .em{color:var(--acc)}
+
+  .metrics{display:flex;flex-wrap:wrap;gap:12px}
+  .metric{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;flex:1;min-width:150px;text-align:center}
+  .metric b{display:block;font-size:1.5rem;color:var(--acc)}
+  .metric span{font-size:.8rem;color:var(--mut)}
+
+  .tags{display:flex;flex-wrap:wrap;gap:7px}
+  .tag{background:var(--tag);color:var(--acc);border-radius:6px;padding:4px 10px;font-size:.8rem}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin-bottom:14px}
+  .card h3{font-size:1.05rem}
+  .card .meta{color:var(--mut);font-size:.85rem;margin:5px 0 12px}
   .card ul{margin:0;padding-left:18px}
-  .card li{margin:4px 0;font-size:.93rem}
-  .metrics{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 4px}
-  .metric{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;flex:1;min-width:130px;text-align:center}
-  .metric b{display:block;font-size:1.3rem;color:var(--acc)}
-  .metric span{font-size:.78rem;color:var(--mut)}
-  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-  .tag{background:var(--tag);color:var(--acc);border-radius:6px;padding:3px 9px;font-size:.78rem}
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  @media(max-width:640px){.grid{grid-template-columns:1fr}}
-  .muted{color:var(--mut);font-size:.88rem}
-  footer{margin-top:40px;color:var(--mut);font-size:.8rem;text-align:center}
+  .card li{margin:5px 0;font-size:.93rem}
+  .card b{color:var(--fg)}
+  .hl{color:var(--acc2);font-weight:600}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .projgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:720px){.grid2,.projgrid{grid-template-columns:1fr}}
+  .proj{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .proj img{width:100%;height:130px;object-fit:cover;display:block;opacity:.9}
+  .proj .body{padding:14px 16px}
+  .proj h4{font-size:.98rem}
+  .proj p{color:var(--mut);font-size:.85rem;margin:6px 0 8px}
+  .proj .t{font-size:.72rem;color:var(--acc)}
+
+  .muted{color:var(--mut);font-size:.9rem}
+  footer{margin-top:48px;color:var(--mut);font-size:.8rem;text-align:center;border-top:1px solid var(--line);padding-top:20px}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <h1>오승현 <span class="muted" style="font-size:1rem">Oh Seunghyun</span></h1>
+
+<div class="hero">
+  <div class="hero-inner">
+    <img class="avatar" src="assets/mypicsquare.jpg" alt="오승현 프로필">
+    <h1>오승현 <span class="muted" style="font-size:1.1rem">Oh Seunghyun</span></h1>
     <div class="role">AI 플랫폼 풀스택 개발자 · Java/Spring 백엔드 · AI 웹서비스</div>
-    <p class="sum">Java/Spring 기반 웹 서비스를 5년간 설계·개발·운영하며, 최근에는 그 위에 AI를 얹어 사용자가 매일 쓰는 서비스로 만들어 온 백엔드 중심 풀스택 개발자. 멀티 Provider LLM 라우팅·SSE 스트리밍·Keycloak 인증을 프로덕션에서 구현하고, 메모리 누수·세션 만료 같은 장애를 근본 원인까지 규명해 해결합니다.</p>
+    <p class="sub">"이 업무는 왜 이렇게 하고 있을까, 이렇게 바꾸면 더 낫지 않을까"에서 시작해 개선을 만드는 개발자. Java/Spring 기반 웹 서비스를 5년간 설계·운영하며, 그 위에 AI를 얹어 사용자가 매일 쓰는 서비스로 만들어 왔습니다.</p>
     <div class="contact">
-      📧 dhtmdgussksm@gmail.com · 📱 010-2429-9420 ·
+      📧 dhtmdgussksm@gmail.com &nbsp;·&nbsp; 📱 010-2429-9420 &nbsp;·&nbsp;
       <a href="https://github.com/LucestDail">github.com/LucestDail</a>
     </div>
-  </header>
-
-  <h2>핵심 지표</h2>
-  <div class="metrics">
-    <div class="metric"><b>944</b><span>Bitbucket 커밋 (HelpNow Plex)</span></div>
-    <div class="metric"><b>~5년</b><span>Java/Spring 개발 경력</span></div>
-    <div class="metric"><b>대상</b><span>2025 공공부문 AX 혁신대상</span></div>
-    <div class="metric"><b>60→80%</b><span>한수원 RAG 응답 신뢰도</span></div>
   </div>
+</div>
 
-  <h2>기술 스택</h2>
-  <div class="card">
-    <div class="tags">
-      <span class="tag">Java 17</span><span class="tag">Spring Boot 2.7/3.x</span><span class="tag">WebFlux</span>
-      <span class="tag">RESTful/SSE</span><span class="tag">MyBatis·JPA</span><span class="tag">MySQL·Oracle·Tibero</span>
-      <span class="tag">Redis</span><span class="tag">Keycloak</span><span class="tag">멀티 LLM(Gemini·Bedrock·OpenAI·Azure)</span>
-      <span class="tag">Vue 3·TS</span><span class="tag">ElasticSearch</span><span class="tag">Spring Batch</span>
-      <span class="tag">Kubernetes(EKS)</span><span class="tag">Jenkins</span><span class="tag">Docker</span>
-      <span class="tag">PDFBox·Playwright</span><span class="tag">Rust(Tauri)</span>
+<div class="wrap">
+
+  <section>
+    <h2>핵심 <span class="em">지표</span></h2>
+    <div class="metrics">
+      <div class="metric"><b>944</b><span>Bitbucket 커밋 (HelpNow Plex)</span></div>
+      <div class="metric"><b>~5년</b><span>Java/Spring 개발 경력</span></div>
+      <div class="metric"><b>대상</b><span>2025 공공부문 AX 혁신대상</span></div>
+      <div class="metric"><b>60→80%</b><span>한수원 RAG 응답 신뢰도</span></div>
     </div>
-  </div>
+  </section>
 
-  <h2>대표 경력</h2>
-
-  <div class="card">
-    <h3>HelpNow Plex — 사내 AI 지식 플랫폼 <span class="muted">· 베스핀글로벌</span></h3>
-    <div class="meta">2025.03 ~ 현재 · Spring Boot BFF/게이트웨이·인증·문서변환 서버 + Vue 프론트 · 커밋 944</div>
-    <ul>
-      <li><b>AI 채팅 v2 재설계</b> — 레거시 채팅을 서버 경유 SSE 스트리밍 구조로 전환. 이벤트 10종+, Redis Pub/Sub 재연결 replay(멀티 인스턴스 HA).</li>
-      <li><b>멀티 Provider LLM 라우팅</b> — Gemini/Bedrock/OpenAI/Azure 단일 추상화 라우팅·폴백(CircuitBreaker). 업무보고 자연어 파싱 엔진.</li>
-      <li><b>인라인 인용·문서 스튜디오·유저 메모리</b> — (DOC N) 마커·칩/카드·ECharts 차트, docsStudio v2 스트리밍(resume/stop), 유저 메모리 오픈.</li>
-      <li><b>대민 게스트 인증</b> — Keycloak Token Exchange 기반 게스트 확인·생성 + JWT 발급 프록시.</li>
-      <li><b>운영 안정성(근본 진단)</b> — jmap으로 Keycloak deployment 메모리 누수 규명→캐시 수정, 세션 만료 401 회복탄력성, 쿠키 400 앱 단독 해결, IDOR·16MB 덤프 차단.</li>
-      <li><b>문서 변환 서버</b> — PDFBox 손상 PDF 복구·PDF→PDF 정규화, Playwright HTML→PDF 레이아웃 보존.</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h3>한국수력원자력 생성형 AI 플랫폼 <span class="muted">· 베스핀글로벌 · PL</span></h3>
-    <div class="meta">2024.12 ~ 2026.03 · 국내 최초 원전 폐쇄망 RAG AI 플랫폼</div>
-    <ul>
-      <li>퓨샷 피드백으로 응답 신뢰도 <b>60→80%</b>, SSE 진행 상태로 완료 수신율 <b>20→90%</b></li>
-      <li>별도 집계 서버+ES 템플릿으로 조회 <b>20~30분→1초</b>, vLLM 이미지 분석 실패율 <b>98→0%</b></li>
-      <li>🏆 <b>2025 공공부문 AX 혁신대상 '대상'</b></li>
-    </ul>
-  </div>
-
-  <div class="grid">
+  <section>
+    <h2>기술 <span class="em">스택</span></h2>
     <div class="card">
-      <h3>삼성전자 BQMS VERS 고도화 <span class="muted">· PL</span></h3>
-      <div class="meta">2024.05 ~ 2024.11</div>
+      <div class="tags">
+        <span class="tag">Java 17</span><span class="tag">Spring Boot 2.7/3.x</span><span class="tag">WebFlux</span>
+        <span class="tag">RESTful / SSE</span><span class="tag">MyBatis · JPA</span><span class="tag">MySQL · Oracle · Tibero</span>
+        <span class="tag">Redis</span><span class="tag">Keycloak</span><span class="tag">멀티 LLM (Gemini·Bedrock·OpenAI·Azure)</span>
+        <span class="tag">Vue 3 · TypeScript</span><span class="tag">ElasticSearch</span><span class="tag">Spring Batch</span>
+        <span class="tag">Kubernetes(EKS)</span><span class="tag">Jenkins</span><span class="tag">Docker</span>
+        <span class="tag">PDFBox · Playwright</span><span class="tag">Rust(Tauri)</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>대표 <span class="em">경력</span></h2>
+
+    <div class="card">
+      <h3>HelpNow Plex — 사내 AI 지식 플랫폼 <span class="muted">· 베스핀글로벌</span></h3>
+      <div class="meta">2025.03 ~ 현재 · Spring Boot BFF/게이트웨이·인증·문서변환 서버 + Vue 프론트 · 커밋 944</div>
       <ul>
-        <li>Java Interceptor 암복호화(D-KMS) <b>타사 포기분 인수·완성</b></li>
-        <li>벤더 통합 관리·정기 평가 자동화, 통합 결제·품의</li>
+        <li><b>AI 채팅 v2 재설계</b> — 레거시 채팅을 서버 경유 SSE 스트리밍 구조로 전환. 이벤트 10종+, Redis Pub/Sub 재연결 replay(멀티 인스턴스 HA).</li>
+        <li><b>멀티 Provider LLM 라우팅</b> — Gemini/Bedrock/OpenAI/Azure 단일 추상화 라우팅·폴백(CircuitBreaker). 업무보고 자연어 파싱 엔진.</li>
+        <li><b>인라인 인용·문서 스튜디오·유저 메모리</b> — (DOC N) 인용·ECharts 차트, docsStudio v2 스트리밍(resume/stop), 유저 메모리 오픈.</li>
+        <li><b>대민 게스트 인증</b> — Keycloak Token Exchange 기반 게스트 확인·생성 + JWT 발급 프록시.</li>
+        <li><b>운영 안정성(근본 진단)</b> — <span class="hl">jmap</span>으로 Keycloak deployment 메모리 누수 규명→캐시 수정, 세션 만료 401 회복탄력성, 쿠키 400 앱 단독 해결, IDOR·16MB 덤프 차단.</li>
+        <li><b>문서 변환 서버</b> — PDFBox 손상 PDF 복구·PDF→PDF 정규화, Playwright HTML→PDF 레이아웃 보존.</li>
       </ul>
     </div>
+
     <div class="card">
-      <h3>효성ITX — 컨택센터 솔루션 다수 <span class="muted">· Java/Spring</span></h3>
-      <div class="meta">2021.09 ~ 2024.05</div>
+      <h3>한국수력원자력 생성형 AI 플랫폼 <span class="muted">· 베스핀글로벌 · PL</span></h3>
+      <div class="meta">2024.12 ~ 2026.03 · 국내 최초 원전 폐쇄망 RAG AI 플랫폼</div>
       <ul>
-        <li>질병관리청·삼성·KERIS 상담 시스템, CTI/IVR·ES·배치</li>
-        <li>DW 집계 <b>10~15초→0.2~0.5초</b>, 배포 <b>30분→1분</b></li>
+        <li>퓨샷 피드백으로 응답 신뢰도 <span class="hl">60→80%</span>, SSE 진행 상태로 완료 수신율 <span class="hl">20→90%</span></li>
+        <li>별도 집계 서버+ES 템플릿으로 조회 <span class="hl">20~30분→1초</span>, vLLM 이미지 분석 실패율 <span class="hl">98→0%</span></li>
+        <li>🏆 <b>2025 공공부문 AX 혁신대상 '대상'</b></li>
       </ul>
     </div>
-  </div>
 
-  <h2>개인 프로젝트</h2>
-  <div class="card">
-    <ul>
-      <li><b>my-computer</b> — supervisor DAG AI 에이전트 런타임 (Java 21 Spring Boot)</li>
-      <li><b>waynai</b> — SSE+Gemini 여행 계획 SaaS (Spring Boot·Vue·Flutter)</li>
-      <li><b>AIm</b> — AI 회사 타이쿤 시뮬레이터 (동적 에이전트·SSE 중계)</li>
-      <li><b>초민정음</b> — 중앙서버 없는 교실용 받아쓰기 (Flutter·LAN WebSocket·OCR)</li>
-      <li class="muted">외 simpleStock·Haru·MyAPI·jarvis·automation 등 20여 개 (Gemini 기반)</li>
-    </ul>
-  </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>삼성전자 BQMS VERS 고도화 <span class="muted">· PL</span></h3>
+        <div class="meta">2024.05 ~ 2024.11</div>
+        <ul>
+          <li>Java Interceptor 암복호화(D-KMS) <b>타사 포기분 인수·완성</b></li>
+          <li>벤더 통합 관리·정기 평가 자동화, 통합 결제·품의</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>효성ITX — 컨택센터 솔루션 다수 <span class="muted">· Java/Spring</span></h3>
+        <div class="meta">2021.09 ~ 2024.05</div>
+        <ul>
+          <li>질병관리청·삼성·KERIS 상담 시스템, CTI/IVR·ES·배치</li>
+          <li>DW 집계 <span class="hl">10~15초→0.2~0.5초</span>, 배포 <span class="hl">30분→1분</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-  <h2>학력 · 자격</h2>
-  <div class="card muted">
-    경기대학교 컴퓨터과학 / 응용정보통계 학사 (2014~2018), ROTC 임관 ·
-    육군 3기갑여단 정보통신대 운용장교 (2018~2020) ·
-    정보처리기사 · JLPT N1 · SQLD · TOEIC 645
-  </div>
+  <section>
+    <h2>개인 <span class="em">프로젝트</span></h2>
+    <div class="projgrid">
+      <div class="proj"><img src="assets/titleimg.jpg" alt="waynai"><div class="body"><h4>waynai</h4><p>SSE + Gemini 여행 계획 SaaS. 관광공사 API·모델 핫스왑.</p><div class="t">Spring Boot · Vue · Flutter</div></div></div>
+      <div class="proj"><img src="assets/picmdfy.jpg" alt="my-computer"><div class="body"><h4>my-computer</h4><p>supervisor DAG 기반 AI 에이전트 런타임. 컨테이너 격리.</p><div class="t">Java 21 · Reactor</div></div></div>
+      <div class="proj"><img src="assets/mypic.jpg" alt="AIm"><div class="body"><h4>AIm</h4><p>한 줄 명령으로 AI 회사를 가동하는 타이쿤 시뮬레이터.</p><div class="t">Spring Boot · Vue · Gemini</div></div></div>
+    </div>
+    <p class="muted" style="margin-top:10px">외 초민정음(교육 Flutter·OCR)·simpleStock·Haru·MyAPI·jarvis·automation 등 20여 개 (대부분 Gemini 기반, 직접 배포·운영).</p>
+  </section>
+
+  <section>
+    <h2>학력 · <span class="em">자격</span></h2>
+    <div class="card muted">
+      경기대학교 컴퓨터과학 / 응용정보통계 학사 (2014~2018), ROTC 임관 &nbsp;·&nbsp;
+      육군 3기갑여단 정보통신대 운용장교 (2018~2020) &nbsp;·&nbsp;
+      정보처리기사 · JLPT N1 · SQLD · TOEIC 645
+    </div>
+  </section>
 
   <footer>
-    오승현 · AI 플랫폼 풀스택 개발자 · 커밋 수치는 Bitbucket 원격 실측 기준 · 최종 갱신 2026-08
+    오승현 · AI 플랫폼 풀스택 개발자 · 커밋 수치는 Bitbucket 원격 실측 기준 · 최종 갱신 2026-08 ·
+    <a href="https://github.com/LucestDail">GitHub</a>
   </footer>
+
 </div>
 </body>
 </html>
