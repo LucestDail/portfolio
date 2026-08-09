@@ -49,10 +49,12 @@
   .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   .projgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
   @media(max-width:720px){.grid2,.projgrid{grid-template-columns:1fr}}
-  .proj{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .proj{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:inherit;text-decoration:none;transition:border-color .15s,transform .15s}
+  .proj:hover{border-color:var(--acc);transform:translateY(-3px)}
   .proj img{width:100%;height:130px;object-fit:cover;display:block;opacity:.9}
   .proj .body{padding:14px 16px}
-  .proj h4{font-size:.98rem}
+  .proj h4{font-size:.98rem;color:var(--fg)}
+  .proj:hover h4{color:var(--acc)}
   .proj p{color:var(--mut);font-size:.85rem;margin:6px 0 8px}
   .proj .t{font-size:.72rem;color:var(--acc)}
 
@@ -150,11 +152,31 @@
   <section>
     <h2>개인 <span class="em">프로젝트</span></h2>
     <div class="projgrid">
-      <div class="proj"><img src="assets/titleimg.jpg" alt="waynai"><div class="body"><h4>waynai</h4><p>SSE + Gemini 여행 계획 SaaS. 관광공사 API·모델 핫스왑.</p><div class="t">Spring Boot · Vue · Flutter</div></div></div>
-      <div class="proj"><img src="assets/picmdfy.jpg" alt="my-computer"><div class="body"><h4>my-computer</h4><p>supervisor DAG 기반 AI 에이전트 런타임. 컨테이너 격리.</p><div class="t">Java 21 · Reactor</div></div></div>
-      <div class="proj"><img src="assets/mypic.jpg" alt="AIm"><div class="body"><h4>AIm</h4><p>한 줄 명령으로 AI 회사를 가동하는 타이쿤 시뮬레이터.</p><div class="t">Spring Boot · Vue · Gemini</div></div></div>
+      <a class="proj" href="https://daero.duckdns.org" target="_blank" rel="noopener">
+        <img src="assets/titleimg.jpg" alt="daero">
+        <div class="body">
+          <h4>daero (대로) ↗</h4>
+          <p>GTFS 표준 데이터로 전국 대중교통(버스·지하철·철도·여객선) door-to-door 경로를 탐색하는 오픈 API. 자체 RAPTOR 알고리즘 구현, API 키 불필요·자가호스팅.</p>
+          <div class="t">Java · Spring Boot · RAPTOR · GTFS · Docker</div>
+        </div>
+      </a>
+      <a class="proj" href="https://lucestdail.github.io/nli/demo.html" target="_blank" rel="noopener">
+        <img src="assets/picmdfy.jpg" alt="NLI">
+        <div class="body">
+          <h4>동네살기지수 NLI ↗</h4>
+          <p>공공데이터 표준데이터를 전국 행정동 3,559개 단위로 융합해 9개 도메인·32개 지표로 "살기 좋은 동네"를 정량화한 지수 + 지도 대시보드. (공공 데모)</p>
+          <div class="t">Python · pandas · DuckDB(spatial) · Leaflet</div>
+        </div>
+      </a>
+      <a class="proj" href="https://초민정음.com" target="_blank" rel="noopener">
+        <img src="assets/mypic.jpg" alt="초민정음">
+        <div class="body">
+          <h4>초민정음 ↗</h4>
+          <p>초등 교사용 한글 학습지·교보재 생성 웹. 받아쓰기·긴글 연습·교안 자료실, 한글 음절을 초/중/종성으로 분해하는 REST API. 실서비스 운영 중.</p>
+          <div class="t">Java 17 · Spring Boot 3 · Thymeleaf · Docker</div>
+        </div>
+      </a>
     </div>
-    <p class="muted" style="margin-top:10px">외 초민정음(교육 Flutter·OCR)·simpleStock·Haru·MyAPI·jarvis·automation 등 20여 개 (대부분 Gemini 기반, 직접 배포·운영).</p>
   </section>
 
   <section>
