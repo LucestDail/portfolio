@@ -59,6 +59,16 @@
   .proj .t{font-size:.72rem;color:var(--acc)}
 
   .muted{color:var(--mut);font-size:.9rem}
+  .company{margin-bottom:26px}
+  .co-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--acc)}
+  .co-head b{font-size:1.1rem}
+  .co-head span{color:var(--mut);font-size:.85rem}
+  .tl{position:relative;margin-left:8px;padding-left:20px;border-left:2px solid var(--line)}
+  .tl .row{position:relative;padding:7px 0;font-size:.92rem}
+  .tl .row::before{content:"";position:absolute;left:-25px;top:13px;width:8px;height:8px;border-radius:50%;background:var(--acc)}
+  .tl .row.award::before{background:var(--acc2)}
+  .tl .d{color:var(--acc);font-size:.82rem;font-weight:600;margin-right:8px}
+  .tl .row.award .d{color:var(--acc2)}
   footer{margin-top:48px;color:var(--mut);font-size:.8rem;text-align:center;border-top:1px solid var(--line);padding-top:20px}
 </style>
 </head>
@@ -104,46 +114,69 @@
   </section>
 
   <section>
-    <h2>대표 <span class="em">경력</span></h2>
+    <h2>경력 <span class="em">— 베스핀글로벌</span></h2>
+    <div class="company">
+      <div class="co-head"><b>베스핀글로벌 (Bespin Global)</b><span>대리 · AI 플랫폼 개발 · HelpNow 솔루션 파트 PL · 2024.12 ~ 현재</span></div>
 
-    <div class="card">
-      <h3>HelpNow Plex — 사내 AI 지식 플랫폼 <span class="muted">· 베스핀글로벌</span></h3>
-      <div class="meta">2025.03 ~ 현재 · Spring Boot BFF/게이트웨이·인증·문서변환 서버 + Vue 프론트 · 커밋 944</div>
-      <ul>
-        <li><b>AI 채팅 v2 재설계</b> — 레거시 채팅을 서버 경유 SSE 스트리밍 구조로 전환. 이벤트 10종+, Redis Pub/Sub 재연결 replay(멀티 인스턴스 HA).</li>
-        <li><b>멀티 Provider LLM 라우팅</b> — Gemini/Bedrock/OpenAI/Azure 단일 추상화 라우팅·폴백(CircuitBreaker). 업무보고 자연어 파싱 엔진.</li>
-        <li><b>인라인 인용·문서 스튜디오·유저 메모리</b> — (DOC N) 인용·ECharts 차트, docsStudio v2 스트리밍(resume/stop), 유저 메모리 오픈.</li>
-        <li><b>대민 게스트 인증</b> — Keycloak Token Exchange 기반 게스트 확인·생성 + JWT 발급 프록시.</li>
-        <li><b>운영 안정성(근본 진단)</b> — <span class="hl">jmap</span>으로 Keycloak deployment 메모리 누수 규명→캐시 수정, 세션 만료 401 회복탄력성, 쿠키 400 앱 단독 해결, IDOR·16MB 덤프 차단.</li>
-        <li><b>문서 변환 서버</b> — PDFBox 손상 PDF 복구·PDF→PDF 정규화, Playwright HTML→PDF 레이아웃 보존.</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h3>한국수력원자력 생성형 AI 플랫폼 <span class="muted">· 베스핀글로벌 · PL</span></h3>
-      <div class="meta">2024.12 ~ 2026.03 · 국내 최초 원전 폐쇄망 RAG AI 플랫폼</div>
-      <ul>
-        <li>퓨샷 피드백으로 응답 신뢰도 <span class="hl">60→80%</span>, SSE 진행 상태로 완료 수신율 <span class="hl">20→90%</span></li>
-        <li>별도 집계 서버+ES 템플릿으로 조회 <span class="hl">20~30분→1초</span>, vLLM 이미지 분석 실패율 <span class="hl">98→0%</span></li>
-        <li>🏆 <b>2025 공공부문 AX 혁신대상 '대상'</b> — <a href="https://www.g-enews.com/article/Real-Estate/2025/12/20251219125159707a9fc143920_1" target="_blank" rel="noopener">관련 기사</a></li>
-      </ul>
-    </div>
-
-    <div class="grid2">
       <div class="card">
-        <h3>삼성전자 BQMS VERS 고도화 <span class="muted">· 효성ITX · PL</span></h3>
-        <div class="meta">2024.05 ~ 2024.11</div>
+        <h3>HelpNow Plex — 사내 AI 지식 플랫폼 <span class="muted">· 프론트/백엔드 풀스택</span></h3>
+        <div class="meta">2025.03 ~ 현재 · Vue 3 SPA + Spring Boot 멀티모듈 MSA · Bitbucket 커밋 944(front 666 · server 207 중심)</div>
         <ul>
-          <li>Java Interceptor 암복호화(D-KMS) <b>타사 포기분 인수·완성</b></li>
-          <li>벤더 통합 관리·정기 평가 자동화, 통합 결제·품의</li>
+          <li><b>AI 채팅 v2 재설계</b> — 레거시 채팅을 plex-server 경유 SSE 스트리밍 구조로 전면 전환. message_start·text_delta·thinking_delta·citation_delta·tool_calls·tool_results 등 이벤트 10종+ 직접 작성, Redis Pub/Sub로 세션 상태 관리 + 재연결 replay(멀티 인스턴스 HA).</li>
+          <li><b>멀티 Provider LLM 라우팅</b> — Gemini/Bedrock(Claude)/OpenAI/Azure를 단일 추상화로 라우팅·폴백(CircuitBreaker) 설계. 업무보고 자연어 파싱 엔진(청크 분할·LLM drop 진단) 백엔드 구현.</li>
+          <li><b>인라인 인용·문서 스튜디오·유저 메모리</b> — 답변 내 (DOC N) 인용 마커 문장별 주입·칩/카드·ECharts 인라인 차트, docsStudio v2 스트리밍(파서 통일·resume/stop·도구 세그먼트 렌더), 유저 메모리(설정 모달·조회/편집) 운영 오픈.</li>
+          <li><b>대민 게스트 인증</b> — Keycloak Token Exchange로 이메일 idempotent 게스트 확인·생성 + sub 기준 JWT 발급 프록시(비로그인 대민 온보딩).</li>
+          <li><b>운영 안정성(근본 진단)</b> — <span class="hl">jmap 생존객체 분석</span>으로 Keycloak deployment 메모리 누수(요청마다 재생성) 규명→realm 캐시로 수정, 세션 만료 401 화면 갇힘을 재로그인 유도·재포커스 선제 갱신으로 해소, 쿠키 400 앱 단독 해결, bb8-logger 16MB 덤프·IDOR 차단.</li>
+          <li><b>문서 변환 서버(doconverter)</b> — 13개 타입·다수 변환기, PDFBox 손상 PDF 복구·PDF→PDF 정규화, Playwright(헤드리스 Chromium) HTML→PDF 교체·원본 레이아웃 보존.</li>
+          <li><b>인프라</b> — WebClient(WebFlux)로 12개+ 외부 MSA 게이트웨이·JWT 전파, Spring Batch DB cron 동적 스케줄러, EKS·Jenkins·Harbor·Vault 배포 운영.</li>
         </ul>
       </div>
+
       <div class="card">
-        <h3>효성ITX — 컨택센터 솔루션 다수 <span class="muted">· Java/Spring</span></h3>
-        <div class="meta">2021.09 ~ 2024.11 (효성ITX 재직)</div>
+        <h3>한국수력원자력 생성형 AI 플랫폼 <span class="muted">· HelpNow 솔루션 파트 PL</span></h3>
+        <div class="meta">2024.12 ~ 2026.03 · 국내 최초 원전 특화 폐쇄망 RAG AI 플랫폼</div>
         <ul>
-          <li>질병관리청·삼성·KERIS 상담 시스템, CTI/IVR·ES·배치</li>
-          <li>DW 집계 <span class="hl">10~15초→0.2~0.5초</span>, 배포 <span class="hl">30분→1분</span></li>
+          <li>외부 상용 LLM 없이 내부 HCX LLM·기간계·RAG를 연계하는 폐쇄망 프론트엔드 구현(프론트가 비즈니스 로직 상당 부분 감당).</li>
+          <li>사용자 답변 평가·등록 <b>퓨샷 피드백 루프</b>로 응답 신뢰도 <span class="hl">60→80%</span>, 각 탐색 단계 SSE 실시간 전달로 완료 수신율 <span class="hl">20→90%</span>.</li>
+          <li>별도 집계 서버 + ES 템플릿으로 통계 조회 <span class="hl">20~30분→1초</span>, 프론트 canvas 조정으로 vLLM 이미지 업로드 실패율 <span class="hl">98→0%</span>.</li>
+          <li>국토안전관리원 법률검토 AI PoC 병행(2026.02~03) — Redis Pub/Sub 중계로 대화 유실률 0%.</li>
+          <li>🏆 <b>2025 공공부문 AX 혁신대상 '대상'</b> — <a href="https://www.g-enews.com/article/Real-Estate/2025/12/20251219125159707a9fc143920_1" target="_blank" rel="noopener">관련 기사</a></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>한국임업진흥원 AI 프로젝트 <span class="muted">· 온사이트 대응</span></h3>
+        <div class="meta">2026.07 ~ 현재</div>
+        <ul>
+          <li>트래킹 코스 자연어 질의 → 공공데이터 기반 지도 표출(네이버/카카오, 이동 경로 SVG 벡터).</li>
+          <li>plex-server 인터페이스 가이드·front 파서·예시 HTML·소스 형상 전달 온사이트 대응, 미팅 요청사항(follow-up·마크다운 출력 제한 등) 후속 개선 진행 중.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>경력 <span class="em">— 효성ITX</span></h2>
+    <div class="company">
+      <div class="co-head"><b>효성ITX</b><span>선임 연구원 · DX본부 AICC부문 AICC개발팀 · 2021.09 ~ 2024.11</span></div>
+
+      <div class="card">
+        <h3>삼성전자 BQMS VERS 고도화 <span class="muted">· PL(부PM)</span></h3>
+        <div class="meta">2024.05 ~ 2024.11 · Java, Spring, Oracle, BQMS/Knox 연계</div>
+        <ul>
+          <li><b>Java Interceptor 암복호화 모듈(D-KMS) 인수·완성</b> — 타 개발사 포기분을 인수, 패킷 제어를 정밀 튜닝하고 정규식·요청 케이스 식별 로직 개선으로 자동 암호화·화면 복호화 안정화.</li>
+          <li>협력사(VERS) 등록·수정·조회·평가 프로세스 표준화, 인사 정보 연계 평가 메일 자동화·진행률/점수 통계 시각화.</li>
+          <li>누락됐던 복합 계약 통합 결제·품의 프로세스를 심층 분석해 비즈니스 로직 결함 조기 발견·개선, 레거시 IE→Chrome 전환.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>컨택센터·상담 솔루션 다수 구축 <span class="muted">· Java/Spring</span></h3>
+        <div class="meta">2021.09 ~ 2024.05 · 공공·대기업 콜센터 솔루션</div>
+        <ul>
+          <li><b>한국교육학술정보원(KERIS)</b>(2023.11~2024.05) — CTI/IVR 연계, DW 집계 배치로 조회 <span class="hl">10~15초→0.2~0.5초</span>, IE→Chrome 전환·마이그레이션, RPA 자동화로 일 2~3시간 공수→준실시간.</li>
+          <li><b>삼성전자 서비스센터</b>(2023.05~2023.11) — CTI 소켓 웹 연계로 상담 준비 <span class="hl">5~10초→0초</span>, IVR 콜 통계(콜백·포기호 시계열), 메시지 큐 기반 실시간 콜백·업무요청 자동 반영.</li>
+          <li><b>효성ITX 구독형 상담 플랫폼</b>(2022.03~2023.05) — AWS 클라우드 서버 설계·구성·운영, <b>연 4,000만원 수익 아이템</b>화, APP→Web UI/UX 전환.</li>
+          <li><b>질병관리청 지식정보관리(KMS)</b>(2022.04~2023.05) — ElasticSearch+형태소 분석기로 한글 검색 정확도·속도 향상, 상담 발화 실시간 지식 추천 연계.</li>
+          <li><b>질병관리청 상담분석</b>(2021.09~2022.04) — 파일 이중화·전송 배치 개선(간헐 누락 해소), 배포 자동화 <span class="hl">30분→1분</span>.</li>
         </ul>
       </div>
     </div>
@@ -180,11 +213,17 @@
   </section>
 
   <section>
-    <h2>학력 · <span class="em">자격</span></h2>
-    <div class="card muted">
-      경기대학교 응용정보통계 / 컴퓨터과학 학사 · 경기대학교 ROTC (2014~2018) &nbsp;·&nbsp;
-      장교 복무 · 중위 만기전역(정보통신장교, 2018~2020) &nbsp;·&nbsp;
-      정보처리기사 · JLPT N1 · SQLD · TOEIC Speaking IM3
+    <h2>학력 · 자격 · <span class="em">수상</span> <span class="muted" style="font-size:.8rem">(시간순)</span></h2>
+    <div class="tl">
+      <div class="row"><span class="d">2014.03~2018.02</span>경기대학교 응용정보통계 / 컴퓨터과학 학사 · 경기대학교 ROTC</div>
+      <div class="row"><span class="d">2018.05</span>정보처리기사 (과학기술정보통신부)</div>
+      <div class="row"><span class="d">2018.07</span>JLPT N1 (일본어 최상급)</div>
+      <div class="row"><span class="d">2018.03~2020.06</span>장교 복무 · 중위 만기전역 (정보통신장교)</div>
+      <div class="row award"><span class="d">2019</span>🎖 군 개인상장·표창 3회 (통신계선 부대개편 상장, 군단·여단 훈련유공 표창)</div>
+      <div class="row"><span class="d">2020.12</span>SQLD (한국데이터산업진흥원)</div>
+      <div class="row"><span class="d">2024.07</span>TOEIC Speaking IM3</div>
+      <div class="row award"><span class="d">2025</span>🏆 2025 공공부문 AX 혁신대상 '대상' (한국수력원자력 프로젝트)</div>
+      <div class="row award"><span class="d">2025.12</span>🏅 베스핀글로벌 사내 'Best High Performer' (AI Plex팀, 주요 AI 프로젝트 주도·신규 계약 기여)</div>
     </div>
   </section>
 
