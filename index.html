@@ -36,7 +36,15 @@
   .metric span{font-size:.8rem;color:var(--mut)}
 
   .tags{display:flex;flex-wrap:wrap;gap:7px}
-  .tag{background:var(--tag);color:var(--acc);border-radius:6px;padding:4px 10px;font-size:.8rem}
+  .tag{background:var(--tag);color:var(--acc);border-radius:6px;padding:4px 10px;font-size:.8rem;display:inline-block;margin:3px 3px 0 0}
+  .stack-core{font-size:.9rem;color:var(--mut);display:flex;flex-wrap:wrap;align-items:center}
+  .tag.core{background:#238636aa;color:#fff;font-weight:600}
+  details.stack-more{margin-top:12px}
+  details summary{cursor:pointer;color:var(--acc);font-size:.85rem;padding:6px 0;list-style:none}
+  details summary::-webkit-details-marker{display:none}
+  details summary::before{content:"▸ ";}
+  details[open] summary::before{content:"▾ ";}
+  .card details{margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
 
   .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin-bottom:14px}
   .card h3{font-size:1.05rem}
@@ -81,7 +89,7 @@
     <div class="role">AI 플랫폼 풀스택 개발자 · Java/Spring 백엔드 · AI 웹서비스</div>
     <p class="sub">"이 업무는 왜 이렇게 하고 있을까, 이렇게 바꾸면 더 낫지 않을까"에서 시작해 개선을 만드는 개발자. Java/Spring 기반 웹 서비스를 5년간 설계·운영하며, 그 위에 AI를 얹어 사용자가 매일 쓰는 서비스로 만들어 왔습니다.</p>
     <div class="contact">
-      📧 dhtmdgussksm@gmail.com &nbsp;·&nbsp; 📱 010-2429-9420 &nbsp;·&nbsp;
+      📧 dhtmdgussksm@gmail.com &nbsp;·&nbsp;
       <a href="https://github.com/LucestDail">github.com/LucestDail</a>
     </div>
   </div>
@@ -92,24 +100,26 @@
   <section>
     <h2>핵심 <span class="em">지표</span></h2>
     <div class="metrics">
-      <div class="metric"><b>944</b><span>Bitbucket 커밋 (HelpNow Plex)</span></div>
       <div class="metric"><b>~5년</b><span>Java/Spring 개발 경력</span></div>
       <div class="metric"><b>대상</b><span>2025 공공부문 AX 혁신대상</span></div>
       <div class="metric"><b>60→80%</b><span>한수원 RAG 응답 신뢰도</span></div>
+      <div class="metric"><b>20~30분→1초</b><span>통계 조회 최적화</span></div>
     </div>
   </section>
 
   <section>
     <h2>기술 <span class="em">스택</span></h2>
     <div class="card">
-      <div class="tags">
-        <span class="tag">Java 17</span><span class="tag">Spring Boot 2.7/3.x</span><span class="tag">WebFlux</span>
-        <span class="tag">RESTful / SSE</span><span class="tag">MyBatis · JPA</span><span class="tag">MySQL · Oracle · Tibero</span>
-        <span class="tag">Redis</span><span class="tag">Keycloak</span><span class="tag">멀티 LLM (Gemini·Bedrock·OpenAI·Azure)</span>
-        <span class="tag">Vue 3 · TypeScript</span><span class="tag">ElasticSearch</span><span class="tag">Spring Batch</span>
-        <span class="tag">Kubernetes(EKS)</span><span class="tag">Jenkins</span><span class="tag">Docker</span>
-        <span class="tag">PDFBox · Playwright</span><span class="tag">Rust(Tauri)</span>
-      </div>
+      <div class="stack-core">주력 &nbsp;<span class="tag core">Java 17</span><span class="tag core">Spring Boot 2.7/3.x (WebFlux)</span><span class="tag core">Vue 3</span><span class="tag core">RESTful / SSE</span></div>
+      <details class="stack-more">
+        <summary>그 외 스택 펼치기</summary>
+        <div class="tags">
+          <span class="tag">MyBatis · JPA</span><span class="tag">MySQL · Oracle · Tibero</span><span class="tag">Redis</span>
+          <span class="tag">Keycloak</span><span class="tag">멀티 LLM (Gemini·Bedrock·OpenAI·Azure)</span><span class="tag">ElasticSearch</span>
+          <span class="tag">Spring Batch</span><span class="tag">Kubernetes(EKS)</span><span class="tag">Jenkins</span><span class="tag">Docker</span>
+          <span class="tag">PDFBox · Playwright</span><span class="tag">TypeScript</span><span class="tag">Rust(Tauri)</span>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -120,16 +130,23 @@
 
       <div class="card">
         <h3>HelpNow Plex — 사내 AI 지식 플랫폼 <span class="muted">· 프론트/백엔드 풀스택</span></h3>
-        <div class="meta">2025.03 ~ 현재 · Vue 3 SPA + Spring Boot 멀티모듈 MSA · Bitbucket 커밋 944(front 666 · server 207 중심)</div>
+        <div class="meta">2025.03 ~ 현재 · Vue 3 SPA + Spring Boot 멀티모듈 MSA</div>
         <ul>
-          <li><b>AI 채팅 v2 재설계</b> — 레거시 채팅을 plex-server 경유 SSE 스트리밍 구조로 전면 전환. message_start·text_delta·thinking_delta·citation_delta·tool_calls·tool_results 등 이벤트 10종+ 직접 작성, Redis Pub/Sub로 세션 상태 관리 + 재연결 replay(멀티 인스턴스 HA).</li>
-          <li><b>멀티 Provider LLM 라우팅</b> — Gemini/Bedrock(Claude)/OpenAI/Azure를 단일 추상화로 라우팅·폴백(CircuitBreaker) 설계. 업무보고 자연어 파싱 엔진(청크 분할·LLM drop 진단) 백엔드 구현.</li>
-          <li><b>인라인 인용·문서 스튜디오·유저 메모리</b> — 답변 내 (DOC N) 인용 마커 문장별 주입·칩/카드·ECharts 인라인 차트, docsStudio v2 스트리밍(파서 통일·resume/stop·도구 세그먼트 렌더), 유저 메모리(설정 모달·조회/편집) 운영 오픈.</li>
-          <li><b>대민 게스트 인증</b> — Keycloak Token Exchange로 이메일 idempotent 게스트 확인·생성 + sub 기준 JWT 발급 프록시(비로그인 대민 온보딩).</li>
-          <li><b>운영 안정성(근본 진단)</b> — <span class="hl">jmap 생존객체 분석</span>으로 Keycloak deployment 메모리 누수(요청마다 재생성) 규명→realm 캐시로 수정, 세션 만료 401 화면 갇힘을 재로그인 유도·재포커스 선제 갱신으로 해소, 쿠키 400 앱 단독 해결, bb8-logger 16MB 덤프·IDOR 차단.</li>
-          <li><b>문서 변환 서버(doconverter)</b> — 13개 타입·다수 변환기, PDFBox 손상 PDF 복구·PDF→PDF 정규화, Playwright(헤드리스 Chromium) HTML→PDF 교체·원본 레이아웃 보존.</li>
-          <li><b>인프라</b> — WebClient(WebFlux)로 12개+ 외부 MSA 게이트웨이·JWT 전파, Spring Batch DB cron 동적 스케줄러, EKS·Jenkins·Harbor·Vault 배포 운영.</li>
+          <li><b>AI 채팅·문서 서비스 설계·운영</b> — 레거시 채팅을 SSE 스트리밍 구조로 재설계하고, 멀티 Provider LLM 라우팅·인라인 인용·문서 스튜디오·유저 메모리를 프론트·백엔드로 구현해 프로덕션 운영.</li>
+          <li><b>대민 게스트 인증</b> — Keycloak Token Exchange로 비로그인 사용자 온보딩(게스트 확인·생성 + JWT 발급) 구현.</li>
+          <li><b>운영 장애 근본 대응</b> — 메모리 누수(jmap 진단)·세션 만료 401·쿠키 400·IDOR 등을 원인까지 규명해 해결.</li>
         </ul>
+        <details>
+          <summary>세부 구현 보기</summary>
+          <ul>
+            <li><b>AI 채팅 v2 재설계</b> — plex-server 경유 SSE 스트리밍 전면 전환. message_start·text_delta·thinking_delta·citation_delta·tool_calls·tool_results 등 이벤트 10종+ 직접 작성, Redis Pub/Sub 세션 상태 + 재연결 replay(멀티 인스턴스 HA).</li>
+            <li><b>멀티 Provider LLM 라우팅</b> — Gemini/Bedrock/OpenAI/Azure 단일 추상화 라우팅·폴백(CircuitBreaker). 업무보고 자연어 파싱 엔진(청크 분할·LLM drop 진단).</li>
+            <li><b>인라인 인용·문서 스튜디오·유저 메모리</b> — (DOC N) 인용 마커 문장별 주입·칩/카드·ECharts 차트, docsStudio v2 스트리밍(resume/stop·도구 세그먼트 렌더), 유저 메모리 운영 오픈.</li>
+            <li><b>운영 안정성(근본 진단)</b> — jmap 생존객체 분석으로 Keycloak deployment 메모리 누수(요청마다 재생성) 규명→realm 캐시 수정, 세션 만료 401 화면 갇힘→재로그인 유도·재포커스 선제 갱신, 쿠키 400 앱 단독 해결, bb8-logger 16MB 덤프·IDOR 차단.</li>
+            <li><b>문서 변환 서버(doconverter)</b> — 13개 타입 변환기, PDFBox 손상 PDF 복구·PDF→PDF 정규화, Playwright HTML→PDF·원본 레이아웃 보존.</li>
+            <li><b>인프라</b> — WebClient로 12개+ 외부 MSA 게이트웨이·JWT 전파, Spring Batch DB cron 스케줄러, EKS·Jenkins·Harbor·Vault 운영.</li>
+          </ul>
+        </details>
       </div>
 
       <div class="card">
@@ -225,7 +242,6 @@
       <div class="row award"><span class="d">2019.12</span>🎖 상장 — 특급전사 달성 (제3기갑여단장)</div>
       <div class="row award"><span class="d">2019.12</span>🎖 표창장 — 부대개편 통신 분야 기여 (제3기갑여단장)</div>
       <div class="row"><span class="d">2020.12</span>SQLD (한국데이터산업진흥원)</div>
-      <div class="row"><span class="d">2024.07</span>TOEIC Speaking IM3</div>
       <div class="row award"><span class="d">2025</span>🏆 2025 공공부문 AX 혁신대상 '대상' (한국수력원자력 프로젝트)</div>
       <div class="row award"><span class="d">2025.06</span>🎖 표창장 — 예비군 동원훈련 기여 (제72보병사단장)</div>
       <div class="row award"><span class="d">2025.12</span>🏅 베스핀글로벌 사내 'Best High Performer' (AI Plex팀, 주요 AI 프로젝트 주도·신규 계약 기여)</div>
