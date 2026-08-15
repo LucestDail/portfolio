@@ -133,8 +133,9 @@
             <li><b>멀티 Provider LLM 라우팅</b> — Gemini/Bedrock/OpenAI/Azure 단일 추상화 라우팅·폴백(CircuitBreaker). 업무보고 자연어 파싱 엔진(청크 분할·LLM drop 진단).</li>
             <li><b>인라인 인용·문서 스튜디오·유저 메모리</b> — (DOC N) 인용 마커 문장별 주입·칩/카드·ECharts 차트, docsStudio v2 스트리밍(resume/stop·도구 세그먼트 렌더), 유저 메모리 운영 오픈.</li>
             <li><b>운영 안정성(근본 진단)</b> — jmap 생존객체 분석으로 Keycloak deployment 메모리 누수(요청마다 재생성) 규명→realm 캐시 수정, 세션 만료 401 화면 갇힘→재로그인 유도·재포커스 선제 갱신, 쿠키 400 앱 단독 해결, bb8-logger 16MB 덤프·IDOR 차단.</li>
-            <li><b>문서 변환 서버(doconverter)</b> — 13개 타입 변환기, PDFBox 손상 PDF 복구·PDF→PDF 정규화, Playwright HTML→PDF·원본 레이아웃 보존.</li>
-            <li><b>인프라</b> — WebClient로 12개+ 외부 MSA 게이트웨이·JWT 전파, Spring Batch DB cron 스케줄러, EKS·Jenkins·Harbor·Vault 운영.</li>
+            <li><b>문서 변환 서버(doconverter)</b> — 13개 타입 변환기, PDFBox 손상 PDF 복구·PDF→PDF 정규화, Playwright HTML→PDF·원본 레이아웃 보존, HWP/HWPX는 rhwp(Rust) 네이티브 벡터 렌더(검색 가능 PDF)·LibreOffice 폴백.</li>
+            <li><b>통합 검색(server)</b> — 문서·디렉터리 교차 검색을 단일 API로 통합(파일 타입 필터·즐겨찾기·JWT 토큰 파싱·저장 용량 집계), 핵심 로직 직접 구현.</li>
+            <li><b>인프라</b> — WebClient로 12개+ 외부 MSA 게이트웨이·JWT 전파, Spring Batch DB cron 스케줄러(무중단 스케줄 변경), EKS·Jenkins·Harbor·Vault 운영.</li>
           </ul>
         </details>
       </div>
