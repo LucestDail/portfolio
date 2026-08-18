@@ -65,6 +65,11 @@
   .proj:hover h4{color:var(--acc)}
   .proj p{color:var(--mut);font-size:.85rem;margin:6px 0 8px}
   .proj .t{font-size:.72rem;color:var(--acc)}
+  .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin-top:6px}
+  .gallery figure{margin:0}
+  .gallery img{width:100%;height:130px;object-fit:cover;object-position:top;border:1px solid var(--line);border-radius:8px;opacity:.92}
+  .gallery figcaption{font-size:.72rem;color:var(--mut);margin-top:5px;line-height:1.35}
+  .galnote{font-size:.75rem;color:var(--mut);margin:2px 0 10px}
 
   .muted{color:var(--mut);font-size:.9rem}
   .company{margin-bottom:26px}
@@ -87,7 +92,7 @@
     <img class="avatar" src="assets/mypicsquare.jpg" alt="오승현 프로필">
     <h1>오승현 <span class="muted" style="font-size:1.1rem">Oh Seunghyun</span></h1>
     <div class="role">AI 플랫폼 풀스택 개발자 · Java/Spring 백엔드 · AI 웹서비스</div>
-    <p class="sub">"이 업무는 왜 이렇게 하고 있을까, 이렇게 바꾸면 더 낫지 않을까"에서 시작해 개선을 만드는 개발자. Java/Spring 기반 웹 서비스를 5년간 설계·운영하며, 그 위에 AI를 얹어 사용자가 매일 쓰는 서비스로 만들어 왔습니다.</p>
+    <p class="sub">"이 업무는 왜 이렇게 하고 있을까, 이렇게 바꾸면 더 낫지 않을까"에서 시작해, 한계를 그대로 수용하지 않고 개선을 만드는 개발자. Java/Spring 기반 웹 서비스를 5년간 설계·운영하며, 그 위에 AI를 얹어 사용자가 매일 쓰는 서비스로 만들어 왔습니다.</p>
     <div class="contact">
       📧 dhtmdgussksm@gmail.com &nbsp;·&nbsp;
       <a href="https://github.com/LucestDail">github.com/LucestDail</a>
@@ -184,6 +189,22 @@
           <li><b>질병관리청 지식정보관리(KMS)</b>(2022.04~2023.05) — ElasticSearch+형태소 분석기로 한글 검색 정확도·속도 향상, 상담 발화 실시간 지식 추천 연계.</li>
           <li><b>질병관리청 상담분석</b>(2021.09~2022.04) — 파일 이중화·전송 배치 개선(간헐 누락 해소), 배포 자동화 <span class="hl">30분→1분</span>.</li>
         </ul>
+      </div>
+
+      <div class="card">
+        <h3>솔루션 화면 <span class="muted">· 컨택센터·CTI 콜인프라 연계</span></h3>
+        <p class="galnote">CTI/IVR 콜 인프라와 실시간으로 연계해 상담 데스크·콜 통계·감정/음성 분석·지식관리를 구축·운영한 솔루션 화면입니다. (데이터는 테스트/집계값)</p>
+        <div class="gallery">
+          <figure><img src="assets/sol-hyosung-sda-cti.png" alt="실시간 상담 데스크 CTI"><figcaption>실시간 상담 데스크(SDA) · CTI 고객현황 연계</figcaption></figure>
+          <figure><img src="assets/sol-hyosung-callanalysis.png" alt="콜 추이분석"><figcaption>시간대별 콜 추이·음성 표준지표 분석</figcaption></figure>
+          <figure><img src="assets/sol-hyosung-sentiment.png" alt="상담 감정분석"><figcaption>상담 감정분석 대시보드(긍정/보통/부정)</figcaption></figure>
+          <figure><img src="assets/sol-hyosung-history.png" alt="상담 이력관리"><figcaption>상담 이력 관리</figcaption></figure>
+          <figure><img src="assets/sol-hyosung-app.png" alt="실시간 상담 APP"><figcaption>실시간 상담 APP</figcaption></figure>
+          <figure><img src="assets/sol-hyosung-app-edu.png" alt="상담 APP 교육생 관리"><figcaption>상담 APP · 교육생 관리(KERIS)</figcaption></figure>
+          <figure><img src="assets/sol-hyosung-kms.png" alt="KMS Light"><figcaption>KMS Light · 지식관리 시스템</figcaption></figure>
+          <figure><img src="assets/sol-hyosung-voc.png" alt="VOC Light"><figcaption>VOC Light · 구독형 VOC 분석</figcaption></figure>
+          <figure><img src="assets/sol-kdca-1339.png" alt="질병관리청 1339 KMS"><figcaption>질병관리청 1339 지식관리(KMS)</figcaption></figure>
+        </div>
       </div>
     </div>
   </section>
