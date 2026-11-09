@@ -4,265 +4,497 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>오승현 — AI 플랫폼 풀스택 개발자</title>
+<meta name="description" content="Java/Spring 기반 AI 웹서비스를 설계·운영하는 풀스택 개발자 오승현의 경력, 개인 프로젝트, 기술 스택">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lucestdail.github.io/portfolio/">
 <meta property="og:title" content="오승현 — AI 플랫폼 풀스택 개발자">
 <meta property="og:description" content="Java/Spring 기반 AI 웹서비스를 설계·운영하는 풀스택 개발자">
-<meta property="og:image" content="assets/mypicsquare.jpg">
+<meta property="og:image" content="https://lucestdail.github.io/portfolio/assets/mypicsquare.jpg">
+<meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b0d14" media="(prefers-color-scheme: dark)">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-  :root{--bg:#0d1117;--card:#161b22;--fg:#e6edf3;--mut:#8b949e;--acc:#58a6ff;--acc2:#7ee787;--line:#30363d;--tag:#1f6feb22;}
+  /* 방향: 개인 브랜드 / 케이스 스터디
+     — 손으로 먼저 풀고, 결과는 숫자로 남기는 개발자.
+     중성색은 차가운 잉크 톤 한 벌, 강조색은 코발트 하나.
+     시그니처: 실제 개선 수치만 「전 → 후」 모노 띠로 보여 준다. */
+  :root{
+    --page:#f5f7fa; --card:#ffffff; --raised:#eceff4;
+    --text:#111827; --text-2:#4b5565; --muted:#6b7487;
+    --line:rgba(17,24,39,.09); --line-strong:rgba(17,24,39,.16);
+    --accent:#2b47c9; --accent-soft:rgba(43,71,201,.08);
+    --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+    --ease:cubic-bezier(.22,1,.36,1);
+    --shadow:0 1px 2px rgba(17,24,39,.05);
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --page:#0b0d14; --card:#11141c; --raised:#1a1e28;
+    --text:#eef0f5; --text-2:#a3a9b8; --muted:#7a8296;
+    --line:rgba(238,240,245,.08); --line-strong:rgba(238,240,245,.14);
+    --accent:#8fa3ff; --accent-soft:rgba(143,163,255,.10);
+    --shadow:none;
+  }}
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--fg);font-family:-apple-system,'Pretendard','Apple SD Gothic Neo',sans-serif;line-height:1.65}
-  a{color:var(--acc);text-decoration:none}
+  html{scroll-behavior:smooth;scroll-padding-top:72px}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  body{background:var(--page);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.7;
+    -webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:anywhere}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline;text-underline-offset:3px}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+  img{display:block;max-width:100%}
+  .num,.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
 
-  /* Hero */
-  .hero{position:relative;min-height:420px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:60px 24px}
-  .hero::before{content:"";position:absolute;inset:0;background:url('assets/titleimg.jpg') center/cover;filter:brightness(.32) saturate(1.1);z-index:0}
-  .hero-inner{position:relative;z-index:1}
-  .avatar{width:132px;height:132px;border-radius:50%;object-fit:cover;border:3px solid var(--acc);box-shadow:0 8px 30px #0008;margin-bottom:20px}
-  .hero h1{font-size:2.4rem;letter-spacing:-.02em}
-  .hero .role{color:var(--acc2);font-weight:600;margin-top:8px;font-size:1.05rem}
-  .hero .sub{color:#c9d1d9;margin-top:14px;max-width:620px;font-size:.98rem}
-  .hero .contact{margin-top:18px;font-size:.9rem;color:#c9d1d9}
-  .hero .contact a{color:#fff;border-bottom:1px dashed #ffffff66}
+  /* 상단 내비게이션 */
+  .nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--page) 88%,transparent);
+    backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);
+    border-bottom:1px solid var(--line)}
+  .nav-in{max-width:1080px;margin:0 auto;padding:0 24px;height:56px;display:flex;align-items:center;gap:24px}
+  .brand{font-weight:600;font-size:16px;color:var(--text);letter-spacing:-.01em}
+  .brand:hover{text-decoration:none}
+  .nav ul{list-style:none;display:flex;gap:4px;margin-left:auto}
+  .nav ul a{display:block;padding:6px 10px;border-radius:8px;color:var(--text-2);font-size:14px}
+  .nav ul a:hover{background:var(--raised);color:var(--text);text-decoration:none}
+  .btn{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:10px;
+    font-size:14px;font-weight:500;border:1px solid transparent;transition:background-color .15s var(--ease),border-color .15s var(--ease)}
+  .btn:hover{text-decoration:none}
+  .btn:active{transform:scale(.98)}
+  .btn.primary{background:var(--text);color:var(--page)}
+  .btn.primary:hover{background:var(--accent);color:#fff}
+  .btn.ghost{background:var(--card);border-color:var(--line-strong);color:var(--text)}
+  .btn.ghost:hover{border-color:var(--accent)}
+  .nav .btn{height:34px;padding:0 12px;font-size:13px}
+  @media (max-width:720px){.nav ul{display:none}.nav .btn{margin-left:auto}}
+  .ic{width:16px;height:16px;flex:none;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 
-  .wrap{max-width:900px;margin:0 auto;padding:8px 24px 80px}
-  section{margin-top:44px}
-  h2{font-size:1.25rem;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--line);letter-spacing:-.01em}
-  h2 .em{color:var(--acc)}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
 
-  .metrics{display:flex;flex-wrap:wrap;gap:12px}
-  .metric{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;flex:1;min-width:150px;text-align:center}
-  .metric b{display:block;font-size:1.5rem;color:var(--acc)}
-  .metric span{font-size:.8rem;color:var(--mut)}
+  /* 히어로 — 왼쪽 글, 오른쪽 손글씨 노트 */
+  .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding:64px 0 72px}
+  .who{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+  .who img{width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:center 20%;border:1px solid var(--line-strong)}
+  .who .en{color:var(--muted);font-size:13px}
+  .who .ko{font-size:15px;font-weight:500}
+  .hero h1{font-size:44px;line-height:1.15;font-weight:600;letter-spacing:-.025em;max-width:16em}
+  .hero .lead{margin-top:20px;color:var(--text-2);font-size:17px;line-height:1.75;max-width:34em}
+  .facts{margin-top:28px;display:grid;grid-template-columns:auto 1fr;gap:8px 20px;font-size:14px;max-width:34em}
+  .facts dt{color:var(--muted)}
+  .facts dd{color:var(--text)}
+  .acts{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap}
+  .note{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:4/5;background:var(--raised);
+    box-shadow:0 8px 24px rgba(17,24,39,.08)}
+  .note img{width:100%;height:100%;object-fit:cover;object-position:30% 40%}
+  @media (max-width:880px){
+    .hero{grid-template-columns:1fr;gap:32px;padding:40px 0 48px}
+    .hero h1{font-size:34px}
+    .note{aspect-ratio:16/10}
+  }
 
-  .tags{display:flex;flex-wrap:wrap;gap:7px}
-  .tag{background:var(--tag);color:var(--acc);border-radius:6px;padding:4px 10px;font-size:.8rem;display:inline-block;margin:3px 3px 0 0}
-  .stack-core{font-size:.9rem;color:var(--mut);display:flex;flex-wrap:wrap;align-items:center}
-  .tag.core{background:#238636aa;color:#fff;font-weight:600}
-  details.stack-more{margin-top:12px}
-  details summary{cursor:pointer;color:var(--acc);font-size:.85rem;padding:6px 0;list-style:none}
-  details summary::-webkit-details-marker{display:none}
-  details summary::before{content:"▸ ";}
-  details[open] summary::before{content:"▾ ";}
-  .card details{margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
+  /* 섹션 공통 */
+  section{padding:56px 0;border-top:1px solid var(--line)}
+  .sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:28px;flex-wrap:wrap}
+  .sec-head h2{font-size:28px;font-weight:600;letter-spacing:-.02em;line-height:1.2}
+  .sec-head p{color:var(--muted);font-size:14px}
 
-  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin-bottom:14px}
-  .card h3{font-size:1.05rem}
-  .card .meta{color:var(--mut);font-size:.85rem;margin:5px 0 12px}
-  .card ul{margin:0;padding-left:18px}
-  .card li{margin:5px 0;font-size:.93rem}
-  .card b{color:var(--fg)}
-  .hl{color:var(--acc2);font-weight:600}
+  /* 회사 머리 */
+  .company{margin-top:40px}
+  .company:first-of-type{margin-top:0}
+  .co{display:grid;grid-template-columns:240px 1fr;gap:32px}
+  .co-side{position:sticky;top:80px;align-self:start}
+  .co-side h3{font-size:20px;font-weight:600;letter-spacing:-.01em}
+  .co-side p{color:var(--text-2);font-size:14px;margin-top:4px}
+  .co-side .when{margin-top:8px;color:var(--muted);font-size:13px}
+  .cases{display:flex;flex-direction:column;gap:16px;min-width:0}
+  @media (max-width:880px){.co{grid-template-columns:1fr;gap:16px}.co-side{position:static}}
 
-  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  .projgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  @media(max-width:720px){.grid2,.projgrid{grid-template-columns:1fr}}
-  .proj{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;color:inherit;text-decoration:none;transition:border-color .15s,transform .15s}
-  .proj:hover{border-color:var(--acc);transform:translateY(-3px)}
-  .proj img{width:100%;height:130px;object-fit:cover;display:block;opacity:.9}
-  .proj .body{padding:14px 16px}
-  .proj h4{font-size:.98rem;color:var(--fg)}
-  .proj:hover h4{color:var(--acc)}
-  .proj p{color:var(--mut);font-size:.85rem;margin:6px 0 8px}
-  .proj .t{font-size:.72rem;color:var(--acc)}
-  .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin-top:6px}
-  .gallery figure{margin:0}
-  .gallery img{width:100%;height:130px;object-fit:cover;object-position:top;border:1px solid var(--line);border-radius:8px;opacity:.92}
-  .gallery figcaption{font-size:.72rem;color:var(--mut);margin-top:5px;line-height:1.35}
-  .galnote{font-size:.75rem;color:var(--mut);margin:2px 0 10px}
+  /* 케이스 카드 */
+  .case{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:var(--shadow)}
+  .case-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+  .case h4{font-size:18px;font-weight:600;letter-spacing:-.01em;line-height:1.4}
+  .case .period{color:var(--muted);font-size:13px;white-space:nowrap}
+  .case .ctx{color:var(--text-2);font-size:14px;margin-top:4px}
+  .role{display:grid;grid-template-columns:56px 1fr;gap:4px 12px;margin-top:16px;font-size:14px}
+  .role dt{color:var(--muted)}
+  .role dd{color:var(--text)}
+  .case ul{list-style:none;margin-top:16px;display:flex;flex-direction:column;gap:8px}
+  .case li{position:relative;padding-left:16px;font-size:14.5px;color:var(--text-2)}
+  .case li::before{content:"";position:absolute;left:2px;top:.75em;width:5px;height:1px;background:var(--muted)}
+  .case li b{color:var(--text);font-weight:600}
+  .award-line{display:flex;align-items:center;gap:8px;margin-top:16px;padding:12px 16px;border-radius:10px;
+    background:var(--accent-soft);font-size:14px;color:var(--text)}
+  .award-line .ic{color:var(--accent)}
 
-  .muted{color:var(--mut);font-size:.9rem}
-  .company{margin-bottom:26px}
-  .co-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--acc)}
-  .co-head b{font-size:1.1rem}
-  .co-head span{color:var(--mut);font-size:.85rem}
-  .tl{position:relative;margin-left:8px;padding-left:20px;border-left:2px solid var(--line)}
-  .tl .row{position:relative;padding:7px 0;font-size:.92rem}
-  .tl .row::before{content:"";position:absolute;left:-25px;top:13px;width:8px;height:8px;border-radius:50%;background:var(--acc)}
-  .tl .row.award::before{background:var(--acc2)}
-  .tl .d{color:var(--acc);font-size:.82rem;font-weight:600;margin-right:8px}
-  .tl .row.award .d{color:var(--acc2)}
-  footer{margin-top:48px;color:var(--mut);font-size:.8rem;text-align:center;border-top:1px solid var(--line);padding-top:20px}
+  /* 시그니처 — 전 → 후 */
+  .deltas{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;margin-top:20px;
+    background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .delta{background:var(--card);padding:16px}
+  @media (max-width:480px){.deltas{grid-template-columns:1fr}}
+  .delta .fig{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:15px;color:var(--text);
+    display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;line-height:1.4}
+  .delta .fig s{text-decoration:none;color:var(--muted)}
+  .delta .fig .to{color:var(--accent);font-weight:500;font-size:20px}
+  .delta .fig .arr{color:var(--muted)}
+  .delta .what{margin-top:6px;font-size:13px;color:var(--text-2);line-height:1.5}
+
+  details{margin-top:16px;border-top:1px solid var(--line);padding-top:12px}
+  summary{cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:6px;color:var(--accent);font-size:14px;font-weight:500}
+  summary::-webkit-details-marker{display:none}
+  summary .ic{transition:transform .2s var(--ease)}
+  details[open] summary .ic{transform:rotate(90deg)}
+  details ul{margin-top:12px}
+
+  /* 솔루션 화면 갤러리 */
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+  @media (max-width:720px){.gallery{grid-template-columns:repeat(2,1fr)}}
+  .shot{display:block;color:inherit}
+  .shot:hover{text-decoration:none}
+  .shot .frame{border-radius:10px;overflow:hidden;border:1px solid var(--line);background:var(--raised);aspect-ratio:16/10}
+  .shot img{width:100%;height:100%;object-fit:cover;object-position:top left;transition:transform .3s var(--ease)}
+  .shot:hover img{transform:scale(1.02)}
+  .shot span{display:block;font-size:12.5px;color:var(--text-2);margin-top:8px;line-height:1.45}
+  .galnote{font-size:13px;color:var(--muted);margin-top:4px}
+
+  /* 개인 프로젝트 */
+  .projects{display:grid;grid-template-columns:1.4fr 1fr;gap:16px}
+  .projects .proj:first-child{grid-row:span 2}
+  @media (max-width:880px){.projects{grid-template-columns:1fr}.projects .proj:first-child{grid-row:auto}}
+  .proj{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+    color:inherit;box-shadow:var(--shadow);transition:border-color .15s var(--ease)}
+  .proj:hover{text-decoration:none;border-color:var(--accent)}
+  .proj .frame{aspect-ratio:2/1;overflow:hidden;background:var(--raised);border-bottom:1px solid var(--line)}
+  .proj:first-child .frame{flex:1;aspect-ratio:auto;min-height:280px}
+  .proj:first-child .body{flex:none}
+  @media (max-width:880px){.proj:first-child .frame{flex:none;aspect-ratio:2/1;min-height:0}}
+  .proj img{width:100%;height:100%;object-fit:cover;object-position:top left}
+  .proj .body{padding:20px 24px 24px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .proj h3{font-size:18px;font-weight:600;letter-spacing:-.01em;display:flex;align-items:center;gap:8px}
+  .proj p{color:var(--text-2);font-size:14px}
+  .proj .stack{margin-top:auto;padding-top:8px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+  .proj .go{display:inline-flex;align-items:center;gap:4px;color:var(--accent);font-size:13px;font-weight:500}
+
+  /* 기술 스택 */
+  .stack-grid{display:grid;grid-template-columns:240px 1fr;gap:16px 32px;font-size:14.5px}
+  .stack-grid dt{color:var(--muted)}
+  .stack-grid dd{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{display:inline-block;padding:4px 10px;border-radius:6px;background:var(--card);border:1px solid var(--line);
+    color:var(--text-2);font-size:13.5px}
+  .chip.core{border-color:var(--line-strong);color:var(--text);font-weight:500}
+  @media (max-width:720px){.stack-grid{grid-template-columns:1fr;gap:8px}.stack-grid dd{margin-bottom:12px}}
+
+  /* 이력 */
+  .history{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  @media (max-width:880px){.history{grid-template-columns:1fr}}
+  .history h3{font-size:16px;font-weight:600;margin-bottom:12px}
+  .tl{list-style:none;border-top:1px solid var(--line)}
+  .tl li{display:grid;grid-template-columns:136px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
+  .tl .d{font-family:var(--mono);font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums;padding-top:1px}
+  .tl .by{display:block;color:var(--muted);font-size:13px}
+  .tl li.top .t{color:var(--accent);font-weight:500}
+  @media (max-width:480px){.tl li{grid-template-columns:1fr;gap:2px}}
+
+  footer{border-top:1px solid var(--line);padding:40px 0 56px}
+  .foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
+  .foot p{color:var(--muted);font-size:13px}
+
+  /* 이미지 크게 보기 */
+  dialog.lb{border:0;padding:0;background:transparent;max-width:min(1200px,94vw);max-height:92vh;margin:auto}
+  dialog.lb::backdrop{background:rgba(7,8,13,.82)}
+  dialog.lb img{max-width:100%;max-height:84vh;border-radius:10px;margin:0 auto;background:#fff}
+  dialog.lb p{color:#eef0f5;font-size:14px;text-align:center;margin-top:12px}
+  dialog.lb button{position:fixed;top:16px;right:16px;width:40px;height:40px;border-radius:10px;border:0;
+    background:rgba(255,255,255,.12);color:#fff;cursor:pointer;display:grid;place-items:center}
+  dialog.lb button:hover{background:rgba(255,255,255,.2)}
 </style>
 </head>
 <body>
 
-<div class="hero">
-  <div class="hero-inner">
-    <img class="avatar" src="assets/mypicsquare.jpg" alt="오승현 프로필">
-    <h1>오승현 <span class="muted" style="font-size:1.1rem">Oh Seunghyun</span></h1>
-    <div class="role">AI 플랫폼 풀스택 개발자 · Java/Spring 백엔드 · AI 웹서비스</div>
-    <p class="sub">"이 업무는 왜 이렇게 하고 있을까, 이렇게 바꾸면 더 낫지 않을까"에서 시작해, 한계를 그대로 수용하지 않고 개선을 만드는 개발자. Java/Spring 기반 웹 서비스를 5년간 설계·운영하며, 그 위에 AI를 얹어 사용자가 매일 쓰는 서비스로 만들어 왔습니다.</p>
-    <div class="contact">
-      📧 dhtmdgussksm@gmail.com &nbsp;·&nbsp;
-      <a href="https://github.com/LucestDail">github.com/LucestDail</a>
-    </div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+  <symbol id="i-gh" viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></symbol>
+  <symbol id="i-out" viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+  <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+</svg>
+
+<nav class="nav" aria-label="섹션">
+  <div class="nav-in">
+    <a class="brand" href="#top">오승현</a>
+    <ul>
+      <li><a href="#career">경력</a></li>
+      <li><a href="#projects">개인 프로젝트</a></li>
+      <li><a href="#stack">기술</a></li>
+      <li><a href="#history">학력·수상</a></li>
+    </ul>
+    <a class="btn ghost" href="mailto:dhtmdgussksm@gmail.com"><svg class="ic"><use href="#i-mail"/></svg>메일</a>
   </div>
-</div>
+</nav>
 
-<div class="wrap">
+<main class="wrap" id="top">
 
-  <section>
-    <h2>기술 <span class="em">스택</span></h2>
-    <div class="card">
-      <div class="stack-core">주력 &nbsp;<span class="tag core">Java 17</span><span class="tag core">Spring Boot 2.7/3.x (WebFlux)</span><span class="tag core">Vue 3</span><span class="tag core">RESTful / SSE</span></div>
-      <details class="stack-more">
-        <summary>그 외 스택 펼치기</summary>
-        <div class="tags">
-          <span class="tag">MyBatis · JPA</span><span class="tag">MySQL · Oracle · Tibero</span><span class="tag">Redis</span>
-          <span class="tag">Keycloak</span><span class="tag">멀티 LLM (Gemini·Bedrock·OpenAI·Azure)</span><span class="tag">ElasticSearch</span>
-          <span class="tag">Spring Batch</span><span class="tag">Kubernetes(EKS)</span><span class="tag">Jenkins</span><span class="tag">Docker</span>
-          <span class="tag">PDFBox · Playwright</span><span class="tag">TypeScript</span><span class="tag">Rust(Tauri)</span>
-        </div>
-      </details>
+  <header class="hero">
+    <div>
+      <div class="who">
+        <img src="assets/mypicsquare.jpg" alt="오승현 프로필 사진" width="56" height="56">
+        <div><div class="ko">오승현</div><div class="en">Oh Seunghyun · AI 플랫폼 풀스택 개발자</div></div>
+      </div>
+      <h1>Java/Spring 위에 AI를 얹어, 매일 쓰는 서비스를 만드는 개발자</h1>
+      <p class="lead">"이 업무는 왜 이렇게 하고 있을까, 이렇게 바꾸면 더 낫지 않을까"에서 시작해, 한계를 그대로 수용하지 않고 개선을 만드는 개발자. Java/Spring 기반 웹 서비스를 5년간 설계·운영하며, 그 위에 AI를 얹어 사용자가 매일 쓰는 서비스로 만들어 왔습니다.</p>
+      <dl class="facts">
+        <dt>지금</dt><dd>베스핀글로벌 대리 · AI 플랫폼 개발</dd>
+        <dt>주력</dt><dd>Java 17 · Spring Boot · Vue 3 · SSE</dd>
+        <dt>수상</dt><dd>2025 공공부문 AX 혁신대상 대상 (한국수력원자력 프로젝트)</dd>
+      </dl>
+      <div class="acts">
+        <a class="btn primary" href="mailto:dhtmdgussksm@gmail.com"><svg class="ic"><use href="#i-mail"/></svg>dhtmdgussksm@gmail.com</a>
+        <a class="btn ghost" href="https://github.com/LucestDail" target="_blank" rel="noopener"><svg class="ic"><use href="#i-gh"/></svg>GitHub</a>
+      </div>
     </div>
-  </section>
+    <figure class="note">
+      <img src="assets/thumb/titleimg.jpg" alt="Java 객체 생성 관계를 손으로 정리한 노트" width="825" height="1100" fetchpriority="high">
+    </figure>
+  </header>
 
-  <section>
-    <h2>경력 <span class="em">— 베스핀글로벌</span></h2>
-    <div class="company">
-      <div class="co-head"><b>베스핀글로벌 (Bespin Global)</b><span>대리 · AI 플랫폼 개발 · HelpNow 솔루션 파트 구축 담당 · 2024.12 ~ 현재</span></div>
+  <!-- 경력 -->
+  <section id="career" aria-labelledby="career-h">
+    <div class="sec-head"><h2 id="career-h">경력</h2><p>최근 순 · 맡은 일과 결과 중심</p></div>
 
-      <div class="card">
-        <h3>HelpNow Plex — 사내 AI 지식 플랫폼 <span class="muted">· 프론트/백엔드 풀스택</span></h3>
-        <div class="meta">2025.03 ~ 현재 · Vue 3 SPA + Spring Boot 멀티모듈 MSA</div>
-        <ul>
-          <li><b>AI 채팅·문서 서비스 설계·운영</b> — 레거시 채팅을 SSE 스트리밍 구조로 재설계하고, 멀티 Provider LLM 라우팅·인라인 인용·문서 스튜디오·유저 메모리를 프론트·백엔드로 구현해 프로덕션 운영.</li>
-          <li><b>대민 게스트 인증</b> — Keycloak Token Exchange로 비로그인 사용자 온보딩(게스트 확인·생성 + JWT 발급) 구현.</li>
-          <li><b>운영 장애 근본 대응</b> — 메모리 누수(jmap 진단)·세션 만료 401·쿠키 400·IDOR 등을 원인까지 규명해 해결.</li>
-        </ul>
-        <details>
-          <summary>세부 구현 보기</summary>
+    <div class="company co">
+      <aside class="co-side">
+        <h3>베스핀글로벌</h3>
+        <p>대리 · AI 플랫폼 개발<br>HelpNow 솔루션 파트 구축 담당</p>
+        <div class="when num">2024.12 – 현재</div>
+      </aside>
+      <div class="cases">
+
+        <article class="case">
+          <div class="case-top"><h4>HelpNow Plex — 사내 AI 지식 플랫폼</h4><span class="period num">2025.03 – 현재</span></div>
+          <p class="ctx">Vue 3 SPA + Spring Boot 멀티모듈 MSA</p>
+          <dl class="role"><dt>역할</dt><dd>프론트/백엔드 풀스택</dd></dl>
           <ul>
-            <li><b>AI 채팅 v2 재설계</b> — plex-server 경유 SSE 스트리밍 전면 전환. message_start·text_delta·thinking_delta·citation_delta·tool_calls·tool_results 등 이벤트 10종+ 직접 작성, Redis Pub/Sub 세션 상태 + 재연결 replay(멀티 인스턴스 HA).</li>
-            <li><b>멀티 Provider LLM 라우팅</b> — Gemini/Bedrock/OpenAI/Azure 단일 추상화 라우팅·폴백(CircuitBreaker). 업무보고 자연어 파싱 엔진(청크 분할·LLM drop 진단).</li>
-            <li><b>인라인 인용·문서 스튜디오·유저 메모리</b> — (DOC N) 인용 마커 문장별 주입·칩/카드·ECharts 차트, docsStudio v2 스트리밍(resume/stop·도구 세그먼트 렌더), 유저 메모리 운영 오픈.</li>
-            <li><b>운영 안정성(근본 진단)</b> — jmap 생존객체 분석으로 Keycloak deployment 메모리 누수(요청마다 재생성) 규명→realm 캐시 수정, 세션 만료 401 화면 갇힘→재로그인 유도·재포커스 선제 갱신, 쿠키 400 앱 단독 해결, bb8-logger 16MB 덤프·IDOR 차단.</li>
-            <li><b>문서 변환 서버(doconverter)</b> — 13개 타입 변환기, PDFBox 손상 PDF 복구·PDF→PDF 정규화, Playwright HTML→PDF·원본 레이아웃 보존, HWP/HWPX는 rhwp(Rust) 네이티브 벡터 렌더(검색 가능 PDF)·LibreOffice 폴백.</li>
-            <li><b>통합 검색(server)</b> — 문서·디렉터리 교차 검색을 단일 API로 통합(파일 타입 필터·즐겨찾기·JWT 토큰 파싱·저장 용량 집계), 핵심 로직 직접 구현.</li>
-            <li><b>인프라</b> — WebClient로 12개+ 외부 MSA 게이트웨이·JWT 전파, Spring Batch DB cron 스케줄러(무중단 스케줄 변경), EKS·Jenkins·Harbor·Vault 운영.</li>
+            <li><b>AI 채팅·문서 서비스 설계·운영</b> — 레거시 채팅을 SSE 스트리밍 구조로 재설계하고, 멀티 Provider LLM 라우팅·인라인 인용·문서 스튜디오·유저 메모리를 프론트·백엔드로 구현해 프로덕션 운영.</li>
+            <li><b>대민 게스트 인증</b> — Keycloak Token Exchange로 비로그인 사용자 온보딩(게스트 확인·생성 + JWT 발급) 구현.</li>
+            <li><b>운영 장애 근본 대응</b> — 메모리 누수(jmap 진단)·세션 만료 401·쿠키 400·IDOR 등을 원인까지 규명해 해결.</li>
           </ul>
-        </details>
-      </div>
+          <details>
+            <summary><svg class="ic"><use href="#i-chev"/></svg>세부 구현 7가지</summary>
+            <ul>
+              <li><b>AI 채팅 v2 재설계</b> — plex-server 경유 SSE 스트리밍 전면 전환. message_start·text_delta·thinking_delta·citation_delta·tool_calls·tool_results 등 이벤트 10종+ 직접 작성, Redis Pub/Sub 세션 상태 + 재연결 replay(멀티 인스턴스 HA).</li>
+              <li><b>멀티 Provider LLM 라우팅</b> — Gemini/Bedrock/OpenAI/Azure 단일 추상화 라우팅·폴백(CircuitBreaker). 업무보고 자연어 파싱 엔진(청크 분할·LLM drop 진단).</li>
+              <li><b>인라인 인용·문서 스튜디오·유저 메모리</b> — (DOC N) 인용 마커 문장별 주입·칩/카드·ECharts 차트, docsStudio v2 스트리밍(resume/stop·도구 세그먼트 렌더), 유저 메모리 운영 오픈.</li>
+              <li><b>운영 안정성(근본 진단)</b> — jmap 생존객체 분석으로 Keycloak deployment 메모리 누수(요청마다 재생성) 규명→realm 캐시 수정, 세션 만료 401 화면 갇힘→재로그인 유도·재포커스 선제 갱신, 쿠키 400 앱 단독 해결, bb8-logger 16MB 덤프·IDOR 차단.</li>
+              <li><b>문서 변환 서버(doconverter)</b> — 13개 타입 변환기, PDFBox 손상 PDF 복구·PDF→PDF 정규화, Playwright HTML→PDF·원본 레이아웃 보존, HWP/HWPX는 rhwp(Rust) 네이티브 벡터 렌더(검색 가능 PDF)·LibreOffice 폴백.</li>
+              <li><b>통합 검색(server)</b> — 문서·디렉터리 교차 검색을 단일 API로 통합(파일 타입 필터·즐겨찾기·JWT 토큰 파싱·저장 용량 집계), 핵심 로직 직접 구현.</li>
+              <li><b>인프라</b> — WebClient로 12개+ 외부 MSA 게이트웨이·JWT 전파, Spring Batch DB cron 스케줄러(무중단 스케줄 변경), EKS·Jenkins·Harbor·Vault 운영.</li>
+            </ul>
+          </details>
+        </article>
 
-      <div class="card">
-        <h3>한국수력원자력 생성형 AI 플랫폼 <span class="muted">· HelpNow 솔루션 파트 구축 담당</span></h3>
-        <div class="meta">2024.12 ~ 2026.03 · 국내 최초 원전 특화 폐쇄망 RAG AI 플랫폼</div>
-        <ul>
-          <li>외부 상용 LLM 없이 내부 HCX LLM·기간계·RAG를 연계하는 폐쇄망 프론트엔드 구현(프론트가 비즈니스 로직 상당 부분 감당).</li>
-          <li>국토안전관리원 법률검토 AI PoC 병행(2026.02~03) — Redis Pub/Sub 중계로 대화 유실률 0%.</li>
-          <li>🏆 <b>2025 공공부문 AX 혁신대상 '대상'</b> — <a href="https://www.g-enews.com/article/Real-Estate/2025/12/20251219125159707a9fc143920_1" target="_blank" rel="noopener">관련 기사</a></li>
-        </ul>
-      </div>
+        <article class="case">
+          <div class="case-top"><h4>한국수력원자력 생성형 AI 플랫폼</h4><span class="period num">2024.12 – 2026.03</span></div>
+          <p class="ctx">국내 최초 원전 특화 폐쇄망 RAG AI 플랫폼</p>
+          <dl class="role"><dt>역할</dt><dd>HelpNow 솔루션 파트 구축 담당</dd></dl>
+          <ul>
+            <li>외부 상용 LLM 없이 내부 HCX LLM·기간계·RAG를 연계하는 폐쇄망 프론트엔드 구현(프론트가 비즈니스 로직 상당 부분 감당).</li>
+            <li>국토안전관리원 법률검토 AI PoC 병행(2026.02~03) — Redis Pub/Sub 중계로 대화 유실률 0%.</li>
+          </ul>
+          <div class="award-line"><svg class="ic"><use href="#i-award"/></svg><span>2025 공공부문 AX 혁신대상 '대상' · <a href="https://www.g-enews.com/article/Real-Estate/2025/12/20251219125159707a9fc143920_1" target="_blank" rel="noopener">관련 기사</a></span></div>
+        </article>
 
-      <div class="card">
-        <h3>한국임업진흥원 AI 프로젝트 <span class="muted">· 온사이트 대응</span></h3>
-        <div class="meta">2026.07 ~ 현재</div>
-        <ul>
-          <li>트래킹 코스 자연어 질의 → 공공데이터 기반 지도 표출(네이버/카카오, 이동 경로 SVG 벡터).</li>
-          <li>plex-server 인터페이스 가이드·front 파서·예시 HTML·소스 형상 전달 온사이트 대응, 미팅 요청사항(follow-up·마크다운 출력 제한 등) 후속 개선 진행 중.</li>
-        </ul>
+        <article class="case">
+          <div class="case-top"><h4>한국임업진흥원 AI 프로젝트</h4><span class="period num">2026.07 – 현재</span></div>
+          <dl class="role"><dt>역할</dt><dd>온사이트 대응</dd></dl>
+          <ul>
+            <li>트래킹 코스 자연어 질의 → 공공데이터 기반 지도 표출(네이버/카카오, 이동 경로 SVG 벡터).</li>
+            <li>plex-server 인터페이스 가이드·front 파서·예시 HTML·소스 형상 전달 온사이트 대응, 미팅 요청사항(follow-up·마크다운 출력 제한 등) 후속 개선 진행 중.</li>
+          </ul>
+        </article>
+
       </div>
     </div>
 
-    <h2>경력 <span class="em">— 효성ITX</span></h2>
-    <div class="company">
-      <div class="co-head"><b>효성ITX</b><span>선임 연구원 · DX본부 AICC부문 AICC개발팀 · 2021.09 ~ 2024.11</span></div>
+    <div class="company co">
+      <aside class="co-side">
+        <h3>효성ITX</h3>
+        <p>선임 연구원<br>DX본부 AICC부문 AICC개발팀</p>
+        <div class="when num">2021.09 – 2024.11</div>
+      </aside>
+      <div class="cases">
 
-      <div class="card">
-        <h3>삼성전자 BQMS VERS 고도화 <span class="muted">· 솔루션 구축 담당</span></h3>
-        <div class="meta">2024.05 ~ 2024.11 · Java, Spring, Oracle, BQMS/Knox 연계</div>
-        <ul>
-          <li><b>Java Interceptor 암복호화 모듈(D-KMS) 인수·완성</b> — 타 개발사 포기분을 인수, 패킷 제어를 정밀 튜닝하고 정규식·요청 케이스 식별 로직 개선으로 자동 암호화·화면 복호화 안정화.</li>
-          <li>협력사(VERS) 등록·수정·조회·평가 프로세스 표준화, 인사 정보 연계 평가 메일 자동화·진행률/점수 통계 시각화.</li>
-          <li>누락됐던 복합 계약 통합 결제·품의 프로세스를 심층 분석해 비즈니스 로직 결함 조기 발견·개선, 레거시 IE→Chrome 전환.</li>
-        </ul>
-      </div>
+        <article class="case">
+          <div class="case-top"><h4>삼성전자 BQMS VERS 고도화</h4><span class="period num">2024.05 – 2024.11</span></div>
+          <p class="ctx">Java, Spring, Oracle, BQMS/Knox 연계</p>
+          <dl class="role"><dt>역할</dt><dd>솔루션 구축 담당</dd></dl>
+          <ul>
+            <li><b>Java Interceptor 암복호화 모듈(D-KMS) 인수·완성</b> — 타 개발사 포기분을 인수, 패킷 제어를 정밀 튜닝하고 정규식·요청 케이스 식별 로직 개선으로 자동 암호화·화면 복호화 안정화.</li>
+            <li>협력사(VERS) 등록·수정·조회·평가 프로세스 표준화, 인사 정보 연계 평가 메일 자동화·진행률/점수 통계 시각화.</li>
+            <li>누락됐던 복합 계약 통합 결제·품의 프로세스를 심층 분석해 비즈니스 로직 결함 조기 발견·개선, 레거시 IE→Chrome 전환.</li>
+          </ul>
+        </article>
 
-      <div class="card">
-        <h3>컨택센터·상담 솔루션 다수 구축 <span class="muted">· Java/Spring</span></h3>
-        <div class="meta">2021.09 ~ 2024.05 · 공공·대기업 콜센터 솔루션</div>
-        <ul>
-          <li><b>한국교육학술정보원(KERIS)</b>(2023.11~2024.05) — CTI/IVR 연계, DW 집계 배치로 조회 <span class="hl">10~15초→0.2~0.5초</span>, IE→Chrome 전환·마이그레이션, RPA 자동화로 일 2~3시간 공수→준실시간.</li>
-          <li><b>삼성전자 서비스센터</b>(2023.05~2023.11) — CTI 소켓 웹 연계로 상담 준비 <span class="hl">5~10초→0초</span>, IVR 콜 통계(콜백·포기호 시계열), 메시지 큐 기반 실시간 콜백·업무요청 자동 반영.</li>
-          <li><b>효성ITX 구독형 상담 플랫폼</b>(2022.03~2023.05) — AWS 클라우드 서버 설계·구성·운영, <b>연 4,000만원 수익 아이템</b>화, APP→Web UI/UX 전환.</li>
-          <li><b>질병관리청 지식정보관리(KMS)</b>(2022.04~2023.05) — ElasticSearch+형태소 분석기로 한글 검색 정확도·속도 향상, 상담 발화 실시간 지식 추천 연계.</li>
-          <li><b>질병관리청 상담분석</b>(2021.09~2022.04) — 파일 이중화·전송 배치 개선(간헐 누락 해소), 배포 자동화 <span class="hl">30분→1분</span>.</li>
-        </ul>
-      </div>
+        <article class="case">
+          <div class="case-top"><h4>컨택센터·상담 솔루션 다수 구축</h4><span class="period num">2021.09 – 2024.05</span></div>
+          <p class="ctx">공공·대기업 콜센터 솔루션 · Java/Spring</p>
+          <div class="deltas">
+            <div class="delta"><div class="fig"><s>10~15초</s><span class="arr">→</span><span class="to">0.2~0.5초</span></div><div class="what">조회 시간 · KERIS DW 집계 배치</div></div>
+            <div class="delta"><div class="fig"><s>5~10초</s><span class="arr">→</span><span class="to">0초</span></div><div class="what">상담 준비 · 삼성전자 서비스센터 CTI 소켓 연계</div></div>
+            <div class="delta"><div class="fig"><s>30분</s><span class="arr">→</span><span class="to">1분</span></div><div class="what">배포 시간 · 질병관리청 상담분석 배포 자동화</div></div>
+            <div class="delta"><div class="fig"><span class="to">연 4,000만원</span></div><div class="what">수익 아이템화 · 효성ITX 구독형 상담 플랫폼</div></div>
+          </div>
+          <ul>
+            <li><b>한국교육학술정보원(KERIS)</b>(2023.11~2024.05) — CTI/IVR 연계, DW 집계 배치로 조회 10~15초→0.2~0.5초, IE→Chrome 전환·마이그레이션, RPA 자동화로 일 2~3시간 공수→준실시간.</li>
+            <li><b>삼성전자 서비스센터</b>(2023.05~2023.11) — CTI 소켓 웹 연계로 상담 준비 5~10초→0초, IVR 콜 통계(콜백·포기호 시계열), 메시지 큐 기반 실시간 콜백·업무요청 자동 반영.</li>
+            <li><b>효성ITX 구독형 상담 플랫폼</b>(2022.03~2023.05) — AWS 클라우드 서버 설계·구성·운영, <b>연 4,000만원 수익 아이템</b>화, APP→Web UI/UX 전환.</li>
+            <li><b>질병관리청 지식정보관리(KMS)</b>(2022.04~2023.05) — ElasticSearch+형태소 분석기로 한글 검색 정확도·속도 향상, 상담 발화 실시간 지식 추천 연계.</li>
+            <li><b>질병관리청 상담분석</b>(2021.09~2022.04) — 파일 이중화·전송 배치 개선(간헐 누락 해소), 배포 자동화 30분→1분.</li>
+          </ul>
+        </article>
 
-      <div class="card">
-        <h3>솔루션 화면 <span class="muted">· 컨택센터·CTI 콜인프라 연계</span></h3>
-        <p class="galnote">CTI/IVR 콜 인프라와 실시간으로 연계해 상담 데스크·콜 통계·감정/음성 분석·지식관리를 구축·운영한 솔루션 화면입니다. (데이터는 테스트/집계값)</p>
-        <div class="gallery">
-          <figure><img src="assets/sol-hyosung-sda-cti.png" alt="실시간 상담 데스크 CTI"><figcaption>실시간 상담 데스크(SDA) · CTI 고객현황 연계</figcaption></figure>
-          <figure><img src="assets/sol-hyosung-callanalysis.png" alt="콜 추이분석"><figcaption>시간대별 콜 추이·음성 표준지표 분석</figcaption></figure>
-          <figure><img src="assets/sol-hyosung-sentiment.png" alt="상담 감정분석"><figcaption>상담 감정분석 대시보드(긍정/보통/부정)</figcaption></figure>
-          <figure><img src="assets/sol-hyosung-history.png" alt="상담 이력관리"><figcaption>상담 이력 관리</figcaption></figure>
-          <figure><img src="assets/sol-hyosung-app.png" alt="실시간 상담 APP"><figcaption>실시간 상담 APP</figcaption></figure>
-          <figure><img src="assets/sol-hyosung-app-edu.png" alt="상담 APP 교육생 관리"><figcaption>상담 APP · 교육생 관리(KERIS)</figcaption></figure>
-          <figure><img src="assets/sol-hyosung-kms.png" alt="KMS Light"><figcaption>KMS Light · 지식관리 시스템</figcaption></figure>
-          <figure><img src="assets/sol-hyosung-voc.png" alt="VOC Light"><figcaption>VOC Light · 구독형 VOC 분석</figcaption></figure>
-          <figure><img src="assets/sol-kdca-1339.png" alt="질병관리청 1339 KMS"><figcaption>질병관리청 1339 지식관리(KMS)</figcaption></figure>
-        </div>
+        <article class="case">
+          <div class="case-top"><h4>솔루션 화면</h4><span class="period">컨택센터·CTI 콜인프라 연계</span></div>
+          <p class="galnote">CTI/IVR 콜 인프라와 실시간으로 연계해 상담 데스크·콜 통계·감정/음성 분석·지식관리를 구축·운영한 솔루션 화면입니다. (데이터는 테스트/집계값) 누르면 크게 볼 수 있어요.</p>
+          <div class="gallery">
+            <a class="shot" href="assets/sol-hyosung-sda-cti.png"><div class="frame"><img src="assets/thumb/sol-hyosung-sda-cti.jpg" alt="실시간 상담 데스크 CTI" loading="lazy" decoding="async" width="960" height="566"></div><span>실시간 상담 데스크(SDA) · CTI 고객현황 연계</span></a>
+            <a class="shot" href="assets/sol-hyosung-callanalysis.png"><div class="frame"><img src="assets/thumb/sol-hyosung-callanalysis.jpg" alt="콜 추이분석" loading="lazy" decoding="async" width="960" height="521"></div><span>시간대별 콜 추이·음성 표준지표 분석</span></a>
+            <a class="shot" href="assets/sol-hyosung-sentiment.png"><div class="frame"><img src="assets/thumb/sol-hyosung-sentiment.jpg" alt="상담 감정분석" loading="lazy" decoding="async" width="960" height="540"></div><span>상담 감정분석 대시보드(긍정/보통/부정)</span></a>
+            <a class="shot" href="assets/sol-hyosung-history.png"><div class="frame"><img src="assets/thumb/sol-hyosung-history.jpg" alt="상담 이력관리" loading="lazy" decoding="async" width="960" height="634"></div><span>상담 이력 관리</span></a>
+            <a class="shot" href="assets/sol-hyosung-app.png"><div class="frame"><img src="assets/thumb/sol-hyosung-app.jpg" alt="실시간 상담 APP" loading="lazy" decoding="async" width="960" height="467"></div><span>실시간 상담 APP</span></a>
+            <a class="shot" href="assets/sol-hyosung-app-edu.png"><div class="frame"><img src="assets/thumb/sol-hyosung-app-edu.jpg" alt="상담 APP 교육생 관리" loading="lazy" decoding="async" width="960" height="467"></div><span>상담 APP · 교육생 관리(KERIS)</span></a>
+            <a class="shot" href="assets/sol-hyosung-kms.png"><div class="frame"><img src="assets/thumb/sol-hyosung-kms.jpg" alt="KMS Light" loading="lazy" decoding="async" width="960" height="467"></div><span>KMS Light · 지식관리 시스템</span></a>
+            <a class="shot" href="assets/sol-hyosung-voc.png"><div class="frame"><img src="assets/thumb/sol-hyosung-voc.jpg" alt="VOC Light" loading="lazy" decoding="async" width="960" height="467"></div><span>VOC Light · 구독형 VOC 분석</span></a>
+            <a class="shot" href="assets/sol-kdca-1339.png"><div class="frame"><img src="assets/thumb/sol-kdca-1339.jpg" alt="질병관리청 1339 KMS" loading="lazy" decoding="async" width="960" height="516"></div><span>질병관리청 1339 지식관리(KMS)</span></a>
+          </div>
+        </article>
+
       </div>
     </div>
   </section>
 
-  <section>
-    <h2>개인 <span class="em">프로젝트</span></h2>
-    <div class="projgrid">
+  <!-- 개인 프로젝트 -->
+  <section id="projects" aria-labelledby="projects-h">
+    <div class="sec-head"><h2 id="projects-h">개인 프로젝트</h2><p>직접 만들어 공개한 서비스 · 눌러서 바로 써 볼 수 있어요</p></div>
+    <div class="projects">
       <a class="proj" href="https://daero.duckdns.org" target="_blank" rel="noopener">
-        <img src="assets/proj-daero.png" alt="daero">
+        <div class="frame"><img src="assets/thumb/proj-daero.jpg" alt="daero 경로 탐색 화면" loading="lazy" decoding="async" width="960" height="464"></div>
         <div class="body">
-          <h4>daero (대로) ↗</h4>
+          <h3>daero (대로)</h3>
           <p>GTFS 표준 데이터로 전국 대중교통(버스·지하철·철도·여객선) door-to-door 경로를 탐색하는 오픈 API. 자체 RAPTOR 알고리즘 구현, API 키 불필요·자가호스팅.</p>
-          <div class="t">Java · Spring Boot · RAPTOR · GTFS · Docker</div>
+          <div class="stack">Java · Spring Boot · RAPTOR · GTFS · Docker</div>
+          <span class="go">daero.duckdns.org<svg class="ic"><use href="#i-out"/></svg></span>
         </div>
       </a>
       <a class="proj" href="https://lucestdail.github.io/nli/demo.html" target="_blank" rel="noopener">
-        <img src="assets/proj-nli.png" alt="NLI">
+        <div class="frame"><img src="assets/thumb/proj-nli.jpg" alt="동네살기지수 지도 대시보드" loading="lazy" decoding="async" width="960" height="464"></div>
         <div class="body">
-          <h4>동네살기지수 NLI ↗</h4>
+          <h3>동네살기지수 NLI</h3>
           <p>공공데이터 표준데이터를 전국 행정동 3,559개 단위로 융합해 9개 도메인·32개 지표로 "살기 좋은 동네"를 정량화한 지수 + 지도 대시보드. (공공 데모)</p>
-          <div class="t">Python · pandas · DuckDB(spatial) · Leaflet</div>
+          <div class="stack">Python · pandas · DuckDB(spatial) · Leaflet</div>
+          <span class="go">공공 데모 열기<svg class="ic"><use href="#i-out"/></svg></span>
         </div>
       </a>
       <a class="proj" href="https://초민정음.com" target="_blank" rel="noopener">
-        <img src="assets/proj-jammin.png" alt="초민정음">
+        <div class="frame"><img src="assets/thumb/proj-jammin.jpg" alt="초민정음 학습지 생성 화면" loading="lazy" decoding="async" width="960" height="437"></div>
         <div class="body">
-          <h4>초민정음 ↗</h4>
+          <h3>초민정음</h3>
           <p>초등 교사용 한글 학습지·교보재 생성 웹. 받아쓰기·긴글 연습·교안 자료실, 한글 음절을 초/중/종성으로 분해하는 REST API. 실서비스 운영 중.</p>
-          <div class="t">Java 17 · Spring Boot 3 · Thymeleaf · Docker</div>
+          <div class="stack">Java 17 · Spring Boot 3 · Thymeleaf · Docker</div>
+          <span class="go">초민정음.com<svg class="ic"><use href="#i-out"/></svg></span>
         </div>
       </a>
     </div>
   </section>
 
-  <section>
-    <h2>학력 · 자격 · <span class="em">수상</span> <span class="muted" style="font-size:.8rem">(시간순)</span></h2>
-    <div class="tl">
-      <div class="row"><span class="d">2014.03~2018.02</span>경기대학교 응용정보통계 / 컴퓨터과학 학사 · 경기대학교 ROTC</div>
-      <div class="row"><span class="d">2018.05</span>정보처리기사 (과학기술정보통신부)</div>
-      <div class="row"><span class="d">2018.07</span>JLPT N1 (일본어 최상급)</div>
-      <div class="row"><span class="d">2018.10</span>ICT 수료증 — 사물인터넷(IoT) 기술 및 빅데이터 분석기법 (ICT폴리텍대학)</div>
-      <div class="row"><span class="d">2018.03~2020.06</span>장교 복무 · 중위 만기전역 (정보통신장교)</div>
-      <div class="row award"><span class="d">2019.04</span>🎖 표창장 — 정보통신중대 (제3기갑여단장)</div>
-      <div class="row award"><span class="d">2019.06</span>🎖 표창장 — 운용장교 작전업무 기여 (제3기갑여단장)</div>
-      <div class="row award"><span class="d">2019.12</span>🎖 상장 — 특급전사 달성 (제3기갑여단장)</div>
-      <div class="row award"><span class="d">2019.12</span>🎖 표창장 — 부대개편 통신 분야 기여 (제3기갑여단장)</div>
-      <div class="row"><span class="d">2020.12</span>SQLD (한국데이터산업진흥원)</div>
-      <div class="row award"><span class="d">2025</span>🏆 2025 공공부문 AX 혁신대상 '대상' (한국수력원자력 프로젝트)</div>
-      <div class="row award"><span class="d">2025.06</span>🎖 표창장 — 예비군 동원훈련 기여 (제72보병사단장)</div>
-      <div class="row award"><span class="d">2025.12</span>🏅 베스핀글로벌 사내 'Best High Performer' (AI Plex팀, 주요 AI 프로젝트 주도·신규 계약 기여)</div>
+  <!-- 기술 -->
+  <section id="stack" aria-labelledby="stack-h">
+    <div class="sec-head"><h2 id="stack-h">기술 스택</h2></div>
+    <dl class="stack-grid">
+      <dt>주력</dt>
+      <dd><span class="chip core">Java 17</span><span class="chip core">Spring Boot 2.7/3.x (WebFlux)</span><span class="chip core">Vue 3</span><span class="chip core">RESTful / SSE</span></dd>
+      <dt>데이터·검색</dt>
+      <dd><span class="chip">MyBatis · JPA</span><span class="chip">MySQL · Oracle · Tibero</span><span class="chip">Redis</span><span class="chip">ElasticSearch</span><span class="chip">Spring Batch</span></dd>
+      <dt>AI·인증</dt>
+      <dd><span class="chip">멀티 LLM (Gemini·Bedrock·OpenAI·Azure)</span><span class="chip">Keycloak</span></dd>
+      <dt>인프라</dt>
+      <dd><span class="chip">Kubernetes(EKS)</span><span class="chip">Jenkins</span><span class="chip">Docker</span></dd>
+      <dt>그 밖에</dt>
+      <dd><span class="chip">PDFBox · Playwright</span><span class="chip">TypeScript</span><span class="chip">Rust(Tauri)</span></dd>
+    </dl>
+  </section>
+
+  <!-- 학력·자격·수상 -->
+  <section id="history" aria-labelledby="history-h">
+    <div class="sec-head"><h2 id="history-h">학력 · 자격 · 수상</h2><p>시간순</p></div>
+    <div class="history">
+      <div>
+        <h3>학력 · 자격 · 복무</h3>
+        <ul class="tl">
+          <li><span class="d">2014.03–2018.02</span><span class="t">경기대학교 응용정보통계 / 컴퓨터과학 학사 · 경기대학교 ROTC</span></li>
+          <li><span class="d">2018.05</span><span class="t">정보처리기사<span class="by">과학기술정보통신부</span></span></li>
+          <li><span class="d">2018.07</span><span class="t">JLPT N1 (일본어 최상급)</span></li>
+          <li><span class="d">2018.10</span><span class="t">ICT 수료증 — 사물인터넷(IoT) 기술 및 빅데이터 분석기법<span class="by">ICT폴리텍대학</span></span></li>
+          <li><span class="d">2018.03–2020.06</span><span class="t">장교 복무 · 중위 만기전역 (정보통신장교)</span></li>
+          <li><span class="d">2020.12</span><span class="t">SQLD<span class="by">한국데이터산업진흥원</span></span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>수상</h3>
+        <ul class="tl">
+          <li><span class="d">2019.04</span><span class="t">표창장 — 정보통신중대<span class="by">제3기갑여단장</span></span></li>
+          <li><span class="d">2019.06</span><span class="t">표창장 — 운용장교 작전업무 기여<span class="by">제3기갑여단장</span></span></li>
+          <li><span class="d">2019.12</span><span class="t">상장 — 특급전사 달성<span class="by">제3기갑여단장</span></span></li>
+          <li><span class="d">2019.12</span><span class="t">표창장 — 부대개편 통신 분야 기여<span class="by">제3기갑여단장</span></span></li>
+          <li class="top"><span class="d">2025</span><span class="t">2025 공공부문 AX 혁신대상 '대상'<span class="by">한국수력원자력 프로젝트</span></span></li>
+          <li><span class="d">2025.06</span><span class="t">표창장 — 예비군 동원훈련 기여<span class="by">제72보병사단장</span></span></li>
+          <li class="top"><span class="d">2025.12</span><span class="t">베스핀글로벌 사내 'Best High Performer'<span class="by">AI Plex팀, 주요 AI 프로젝트 주도·신규 계약 기여</span></span></li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <footer>
-    오승현 · AI 플랫폼 풀스택 개발자 · 커밋 수치는 Bitbucket 원격 실측 기준 · 최종 갱신 2026-08 ·
-    <a href="https://github.com/LucestDail">GitHub</a>
-  </footer>
+</main>
 
-</div>
+<footer>
+  <div class="wrap foot">
+    <p>오승현 · AI 플랫폼 풀스택 개발자 · 내용 기준 2026-08</p>
+    <div class="acts" style="margin:0">
+      <a class="btn primary" href="mailto:dhtmdgussksm@gmail.com"><svg class="ic"><use href="#i-mail"/></svg>메일 보내기</a>
+      <a class="btn ghost" href="https://github.com/LucestDail" target="_blank" rel="noopener"><svg class="ic"><use href="#i-gh"/></svg>GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<dialog class="lb" id="lb" aria-label="화면 크게 보기">
+  <button type="button" id="lb-x" aria-label="닫기"><svg class="ic" style="width:20px;height:20px"><use href="#i-x"/></svg></button>
+  <img id="lb-img" alt="">
+  <p id="lb-cap"></p>
+</dialog>
+
+<script>
+  // 솔루션 화면 — 썸네일을 누르면 원본을 같은 페이지에서 크게 보여 줘요.
+  // 스크립트가 없어도 링크가 원본 이미지로 바로 열려요.
+  (function () {
+    var lb = document.getElementById('lb');
+    if (!lb || typeof lb.showModal !== 'function') return;
+    var img = document.getElementById('lb-img'), cap = document.getElementById('lb-cap');
+    document.querySelectorAll('.shot').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+        e.preventDefault();
+        img.src = a.getAttribute('href');
+        img.alt = a.querySelector('img').alt;
+        cap.textContent = a.querySelector('span').textContent;
+        lb.showModal();
+      });
+    });
+    document.getElementById('lb-x').addEventListener('click', function () { lb.close(); });
+    lb.addEventListener('click', function (e) { if (e.target === lb) lb.close(); });
+    lb.addEventListener('close', function () { img.removeAttribute('src'); });
+  })();
+</script>
 </body>
 </html>
